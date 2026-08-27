@@ -131,6 +131,16 @@ strong{
     border-radius: 8px;
     background: #fcfcfc;
     border: 1px solid #eee;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(88, 96, 155, 0.65) transparent;
+}
+
+.news-list::-webkit-scrollbar {
+    width: 2px;
+}
+
+.news-list::-webkit-scrollbar-thumb {
+    background: rgba(88, 96, 155, 0.65);
 }
 
 
