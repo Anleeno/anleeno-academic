@@ -14,9 +14,9 @@ export default function Footer() {
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
+          title="Back to top"
         >
-          Back to top
-          <ArrowUp size={14} aria-hidden="true" />
+          <ArrowUp size={19} aria-hidden="true" />
         </button>
       </div>
     </footer>

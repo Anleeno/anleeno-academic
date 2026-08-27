@@ -186,9 +186,12 @@ button {
     border: none;
 }
 
-button:focus,
-button:focus-visible,
-button:active {
+.hamburger:focus,
+.hamburger:focus-visible,
+.hamburger:active,
+.brand-button:focus,
+.brand-button:focus-visible,
+.brand-button:active {
     outline: none;
     box-shadow: none;
     background: transparent;
