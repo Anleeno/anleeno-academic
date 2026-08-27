@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineCheck, AiOutlineCopy, AiOutlineFileText } from "react-icons/ai";
 import "../css/Publications.css";
+import { fetchScholarCitations, resolveCitationCount } from "../utils/scholarCitations";
 import dpc from "../assets/publications/2026-dpc-vqa.png";
 import leaf from "../assets/publications/2026-leaf.png";
 import vquala from "../assets/publications/2025-vqc-cha.png";
@@ -64,6 +65,15 @@ function copyText(text) {
 export default function Publications() {
   const [copiedPaper, setCopiedPaper] = useState("");
   const [bursts, setBursts] = useState([]);
+  const [citationMap, setCitationMap] = useState({});
+
+  useEffect(() => {
+    let active = true;
+    fetchScholarCitations().then((citations) => {
+      if (active) setCitationMap(citations);
+    });
+    return () => { active = false; };
+  }, []);
 
   const copyCitation = (paper, event) => {
     copyText(paper.citation).then(() => {
@@ -86,7 +96,9 @@ export default function Publications() {
       </div>
       <div className="card-title">Publications</div>
       <div className="publications-list">
-        {publications.map((paper) => (
+        {publications.map((paper) => {
+          const citationCount = resolveCitationCount(paper.title, citationMap);
+          return (
           <article className="publication-card" id={paper.id} key={paper.id}>
             <img className="publication-image" src={paper.image} alt="" />
             <div className="publication-content">
@@ -100,7 +112,10 @@ export default function Publications() {
               </div>
               <div className="publication-author-row">
                 <div className="publication-authors">{paper.authors}</div>
-                {paper.authorTag && <span className={`publication-author-tag is-${paper.authorTag.type}`}>{paper.authorTag.label}</span>}
+                <div className="publication-author-tags">
+                  {Number.isFinite(citationCount) && citationCount > 0 && <span className="publication-author-tag is-citation">Cited by {citationCount}</span>}
+                  {paper.authorTag && <span className={`publication-author-tag is-${paper.authorTag.type}`}>{paper.authorTag.label}</span>}
+                </div>
               </div>
               <div className="publication-tags">{paper.tags.map((tag) => <span className="tag-item-show" key={tag}>{tag}</span>)}</div>
               <div className="publication-links">
@@ -113,7 +128,8 @@ export default function Publications() {
               </div>
             </div>
           </article>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

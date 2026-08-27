@@ -118,13 +118,22 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 0.4rem;
+    margin-top: 4px;
 }
 
 .publication-authors {
-    margin: 4px 0 0;
+    margin: 0;
     color: #242424;
     font-size: 0.8rem;
     font-style: italic;
+    line-height: 1.35;
+}
+
+.publication-author-tags {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
 }
 
 .publication-author-tag {
@@ -138,6 +147,13 @@
     font-size: 0.62rem;
     font-weight: 700;
     line-height: 1.35;
+}
+
+.publication-author-tag.is-citation {
+    border-color: #e6def2;
+    background: #f3effa;
+    color: #8d84a6;
+    font-weight: 600;
 }
 
 .publication-author-tag.is-rank {
