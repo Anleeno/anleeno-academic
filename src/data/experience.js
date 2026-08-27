@@ -1,0 +1,39 @@
+import byteDanceLogo from "../assets/ByteDance.png";
+import baiduLogo from "../assets/baidu.svg";
+import helloLogo from "../assets/hello.png";
+
+export const experiences = [
+  {
+    organization: "ByteDance Inc.",
+    logo: byteDanceLogo,
+    period: "2026.08 — Present",
+    location: "Shanghai, China",
+    role: "Senior MLLM Algorithm Engineer",
+    details: [
+      { label: "Scope:", text: "Contributed to CV, MLLM, and agentic applications across TikTok and Doubao ecosystems, including an MLLM-driven spatial perception system based on in-cabin and dashcam imagery." },
+      { label: "Key Work:", text: "Applied VLM post-training to road-scene understanding, spatial generation, and AI agents." },
+    ],
+  },
+  {
+    organization: "Baidu Inc.",
+    logo: baiduLogo,
+    period: "2025.01 — 2026.06",
+    location: "Beijing, China",
+    role: "Senior CV & Multimodal Algorithm Engineer",
+    details: [
+      { label: "Scope:", text: "Contributed to multimodal search and educational AI systems in AI Assistant, spanning open-world image understanding, Vision-Grounded RAG, VLM post-training, and autonomous vision-language agents." },
+      { label: "Key Work:", text: "Worked on intent-aware fine-grained Vision-Grounded RAG, feedback-driven reasoning and tool scheduling for education agents, and DORIS for joint object detection and instance-priority recommendation in AI search." },
+    ],
+  },
+  {
+    organization: "Hello Ltd.",
+    logo: helloLogo,
+    period: "2023.06 — 2024.12",
+    location: "Shanghai, China",
+    role: "CV Algorithm Engineer",
+    details: [
+      { label: "Scope:", text: "Conducted R&D of advanced computer vision algorithms on cloud, mobile, and edge platforms for smart-city, transportation, and risk-control applications." },
+      { label: "Key Work:", text: "Developed edge-cloud collaborative multi-state visual perception for micro-mobility intelligent transportation platforms." },
+    ],
+  },
+];

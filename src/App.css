@@ -54,15 +54,6 @@ header{
 }
 
 /* ======== 左侧 Hero ======== */
-/*.left-hero {*/
-/*  width: 320px;*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-
-/*  background-color: #fff;*/
-/*  position: sticky;*/
-/*  top: 0; !* 让它粘在页面顶部 *!*/
-/*}*/
 .left-hero {
   position: fixed;
   top: 50%;
@@ -72,10 +63,10 @@ header{
   display: flex;
   justify-content: center;
   align-items: center;
-    padding: 2rem 0rem 2rem 8rem;
+  padding: 2rem 0 2rem 8rem;
   background-color: #fff;
   height: auto;
-  z-index: 5; /* 保证在内容上方 */
+  z-index: 5;
 }
 
 
@@ -87,6 +78,9 @@ header{
   margin-left: 320px;
 }
 
+.content-shell {
+  margin: 2rem;
+}
 
 /* ======== Header 导航 ======== */
 nav {
@@ -140,5 +134,5 @@ nav a:hover {
 
 
 div {
-  scroll-margin-top: 4rem; /* header 高度 */
+  scroll-margin-top: 4rem;
 }
