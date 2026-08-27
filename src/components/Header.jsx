@@ -33,7 +33,7 @@ export default function Header() {
       <button className={`hamburger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen}><span className="bar bar1" /><span className="bar bar2" /><span className="bar bar3" /></button>
       <nav className={`header-nav ${menuOpen ? "show" : ""}`}>{NAV.map((item) => {
         const Icon = item.icon;
-        return <button key={item.id} className="nav-item" onClick={() => handleClick(item.id)}><Icon aria-hidden="true" />{item.label}</button>;
+        return <button key={item.id} className="nav-item" onClick={() => handleClick(item.id)}><span className="nav-item-content"><Icon aria-hidden="true" />{item.label}</span></button>;
       })}</nav>
     </div></header>
   );
