@@ -131,7 +131,7 @@
     font-weight: 700;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
     .timeline-container { padding-left: 1.25rem; }
     .timeline-container::before {
         display: block;

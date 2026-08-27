@@ -322,4 +322,4 @@ strong{
 .project-link.is-disabled:hover { background: #7467df; }
 .portfolio-progress-title { margin-top: 1.25rem; }
 .portfolio-progress-text { margin: .45rem 0 0; color: #667085; font-family: Georgia, "Times New Roman", serif; font-size: .82rem; font-style: italic; }
-@media (max-width: 1000px) { .project-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .project-grid { grid-template-columns: 1fr; } }

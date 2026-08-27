@@ -56,7 +56,7 @@ header{
 /* ======== 左侧 Hero ======== */
 .left-hero {
   position: fixed;
-  top: 50%;
+  top: calc(50% + 20px);
   left: 0;
   transform: translateY(-50%); /* 垂直居中 */
   width: 320px;
@@ -99,7 +99,7 @@ nav a:hover {
 }
 
 /* ======== 响应式布局 ======== */
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .main-layout {
     flex-direction: column;
     margin-top: 60px;

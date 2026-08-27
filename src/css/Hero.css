@@ -7,10 +7,18 @@
 .hero-grid{
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
     .profile-pic{
-        width: min(72%, 300px);
-        margin-top: 4rem;
+        width: min(64%, 260px);
+        margin-top: 3rem;
+    }
+
+    .meta-description {
+        width: 100%;
+    }
+
+    .meta-description-row {
+        justify-content: center;
     }
 }
 
