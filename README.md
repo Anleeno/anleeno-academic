@@ -8,13 +8,16 @@ Live demo: [www.anleeno.com](https://www.anleeno.com)
 
 ## Features
 
-- Responsive desktop and mobile layouts
-- Frosted-glass navigation and smooth section scrolling
-- News and professional experience timelines
-- Publication cards with abstracts and copyable citations
-- Optional Google Scholar citation counts
-- Image and hover-to-play video project previews
-- GitHub Pages deployment workflow
+- Built with **React 19**, **Vite 7**, modular components, and isolated content datasets for straightforward maintenance and extension.
+- Responsive CSS architecture supports desktop, iPad, and mobile layouts, with adaptive profile, navigation, timeline, and card presentation.
+- Google Scholar integration includes multi-source fetching, HTML/Markdown parsing, title normalization, request timeouts, and 12-hour `localStorage` caching.
+- Canvas-based logo analysis extracts representative colors at runtime to generate adaptive experience-card reflections without hard-coded presets.
+- ESLint enforces code quality, while GitHub Actions provides automated Vite builds and GitHub Pages deployment.
+- Scroll-aware glass navigation, smooth anchor scrolling, and a collapsible mobile menu.
+- Data-driven profile, news, publication, experience timeline, and selected-project sections.
+- Publication cards with abstract previews, paper links, citation copying, visual feedback, and live Scholar citation counts.
+- Responsive project media with image backdrops and accessible hover/focus-to-play video previews.
+- Social links, downloadable résumé, custom experience timeline, and one-click back-to-top navigation.
 
 ## Quick Start
 

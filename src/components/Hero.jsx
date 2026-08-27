@@ -11,7 +11,7 @@ import { Atom, Camera, ScanEye } from "lucide-react";
 export default function Hero() {
   const links = [
     { label: "Email", icon: <MdEmail />, url: "mailto:xushubo0805@gmail.com" },
-    { label: "GitHub", icon: <FaGithub />, url: "https://github.com/anleeno" },
+    { label: "GitHub", icon: <FaGithub />, url: "https://github.com/Anleeno/anleeno-academic" },
     { label: "Google Scholar", icon: <FaGoogleScholar />, url: "https://scholar.google.com/citations?hl=en&user=Ih094PwAAAAJ&view_op=list_works&sortby=pubdate" },
     { label: "LinkedIn", icon: <FaLinkedin />, url: "https://www.linkedin.com/in/anleeno0805" },
     { label: "Instagram", icon: <RiInstagramFill />, url: "https://www.instagram.com/anleeno_ss" },

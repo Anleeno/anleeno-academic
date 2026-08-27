@@ -32,7 +32,7 @@ export const experiences = [
     location: "Shanghai, China",
     role: "CV Algorithm Engineer",
     details: [
-      { label: "Scope:", text: "Conducted R&D of advanced computer vision algorithms on cloud, mobile, and edge platforms for smart-city, transportation, and risk-control applications." },
+      { label: "Scope:", text: "Contributed advanced computer vision solutions across cloud, mobile, and edge platforms for smart-city, transportation, and risk-control applications." },
       { label: "Key Work:", text: "Developed edge-cloud collaborative multi-state visual perception for micro-mobility intelligent transportation platforms." },
     ],
   },
