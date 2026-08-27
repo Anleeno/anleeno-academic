@@ -224,6 +224,7 @@
 
 .publication-links button.is-copied {
     color: #42775e;
+    border-color: currentColor;
     animation: citeCopiedPop 0.38s ease;
 }
 

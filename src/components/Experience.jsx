@@ -10,10 +10,10 @@ const experiences = [
     logo: byteDanceLogo,
     period: "2026.08 — Present",
     location: "Shanghai, China",
-    role: "Senior CV & MLLM Algorithm Engineer",
+    role: "Senior MLLM Algorithm Engineer",
     details: [
       <span><span className="exp-project-name">Scope:</span> Contributed to CV, MLLM, and agentic applications across TikTok and Doubao ecosystems, including an MLLM-driven spatial perception system based on in-cabin and dashcam imagery.</span>,
-      <span><span className="exp-project-name">Tools:</span> Applied VLM post-training, BEV/3D spatial modeling, open-set detection, and OCR/SAM foundation models for road-scene understanding, spatial generation, and AI agents.</span>,
+      <span><span className="exp-project-name">Key Work:</span> Applied VLM post-training to road-scene understanding, spatial generation, and AI agents.</span>,
     ],
   },
   {
