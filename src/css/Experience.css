@@ -12,7 +12,7 @@
     top: 0;
     width: 2px;
     height: 100%;
-    background: #cfd3e6;
+    background: var(--theme-color-pale);
 }
 
 .timeline-item {
@@ -35,7 +35,7 @@
     display: grid;
     place-items: center;
     box-sizing: border-box;
-    color: #58609b;
+    color: var(--theme-text-color);
     font-family: "Inter", "Helvetica Neue", sans-serif;
     font-size: 0.67rem;
     font-style: normal;
@@ -46,7 +46,7 @@
     font-variant-numeric: tabular-nums;
     border: 1px solid #d9dcea;
     border-radius: 999px;
-    background: #f7f8fc;
+    background: var(--theme-color-surface-soft);
     box-shadow: none;
     transform: translateY(-50%);
     z-index: 2;
@@ -64,7 +64,7 @@
     border: 1px solid #e9eaf1;
     border-radius: 10px;
     background:
-        radial-gradient(circle at 2.15rem 2rem, var(--experience-glow, rgba(88, 96, 155, 0.1)) 0, transparent 7rem),
+        radial-gradient(circle at 2.15rem 2rem, var(--experience-glow, color-mix(in srgb, var(--theme-color) 10%, transparent)) 0, transparent 7rem),
         #fff;
     box-shadow: 0 4px 16px rgba(36, 36, 36, 0.035);
     font-size: 0.8rem;
@@ -127,7 +127,7 @@
 }
 
 .exp-role {
-    color: #58609b;
+    color: var(--theme-text-color);
     font-size: 0.8rem;
     font-style: italic;
     font-weight: 500;
@@ -166,7 +166,7 @@
     position: absolute;
     left: 0;
     top: 1px;
-    color: #cfd3e6;
+    color: var(--theme-color-pale);
     font-size: 0.9em;
 }
 
@@ -192,7 +192,7 @@
         flex-direction: column;
         align-items: center;
         background:
-            radial-gradient(ellipse 12rem 6.25rem at 50% 1.9rem, var(--experience-mobile-glow, rgba(88, 96, 155, 0.18)) 0, transparent 84%),
+            radial-gradient(ellipse 12rem 6.25rem at 50% 1.9rem, var(--experience-mobile-glow, color-mix(in srgb, var(--theme-color) 18%, transparent)) 0, transparent 84%),
             #fff;
     }
     .timeline-content::before {

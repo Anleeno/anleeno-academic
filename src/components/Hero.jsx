@@ -31,7 +31,7 @@ export default function Hero() {
           <a className="meta-linkitem" href={cv} target="_blank" rel="noreferrer">Resume</a>
         </div>
         <div className="contact-small">{links.map((item) => <a key={item.label} aria-label={item.label} title={item.label} href={item.url} target="_blank" rel="noreferrer" className="icon-link">{item.icon}</a>)}</div>
-        <div className="small-text">Last updated: 2026/08/27</div>
+        <div className="small-text">Last updated: {import.meta.env.VITE_BUILD_DATE}</div>
       </div>
     </div></div>
   );

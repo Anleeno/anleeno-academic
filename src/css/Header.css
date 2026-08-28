@@ -50,7 +50,7 @@
     font-style: italic;
     font-weight: 900;
     font-size: 1.2rem;
-    color: #58609b;
+    color: var(--theme-text-color);
     letter-spacing: 0.02em;
     position: relative;
 }
@@ -65,7 +65,7 @@
     top: -0.5em;
     left: -0.14em;
     font-size: 0.8em;
-    color: #58609b;
+    color: var(--theme-text-color);
     display: inline-block;
     transform-origin: 50% 50%;
     animation: spinY2 3s linear infinite;
@@ -117,12 +117,12 @@
 }
 
 .header-nav .nav-item:hover {
-    color: #58609b;
+    color: var(--theme-text-color);
 }
 
 .header-nav .nav-item:focus {
     outline: none;
-    color: #58609b;
+    color: var(--theme-text-color);
 }
 
 /* 在按钮底部加一条 hover 下划线效果 */
@@ -133,9 +133,9 @@
     left: 0.65rem;
     display: block;
     width: 0;
-    height: 5px;
+    height: 4px;
     border-radius: 16px;
-    background: #58609b;
+    background: var(--theme-color);
     transition: width 0.3s ease;
 }
 
@@ -299,7 +299,7 @@
         width: 0;
         height: 3px;
         border-radius: 16px;
-        background: #58609b;
+        background: var(--theme-color);
         transform: translateX(-50%);
         transition: width 0.3s ease;
     }

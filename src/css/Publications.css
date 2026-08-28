@@ -55,7 +55,7 @@
 }
 
 .venue-tag.conference {
-    background: #8b94c5;
+    background: var(--theme-color-soft);
 }
 
 .venue-tag.preprint {
@@ -63,9 +63,9 @@
 }
 
 .venue-tag.ccf {
-    border: 1px solid #cfd3e6;
+    border: 1px solid var(--theme-color-pale);
     background: #fff;
-    color: #58609b;
+    color: var(--theme-text-color);
     padding-inline: 8px;
 }
 
@@ -140,10 +140,10 @@
     display: inline-flex;
     align-items: center;
     padding: 0 6px;
-    border: 1px solid rgba(88, 96, 155, 0.2);
+    border: 1px solid var(--theme-color-translucent);
     border-radius: 999px;
-    background: #f5f6fa;
-    color: #58609b;
+    background: var(--theme-color-surface);
+    color: var(--theme-text-color);
     font-size: 0.62rem;
     font-weight: 700;
     line-height: 1.35;
@@ -171,7 +171,7 @@
     margin-right: 4px;
     padding: 0 8px;
     border-radius: 99px;
-    background: #f5f6fa;
+    background: var(--theme-color-surface);
     color: #888;
     font-size: 0.7rem;
     white-space: nowrap;
@@ -195,7 +195,7 @@
     border: 1px solid #d8dceb;
     border-radius: 999px;
     background: #fff;
-    color: #58609b;
+    color: var(--theme-text-color);
     font-family: inherit;
     font-size: 0.8rem;
     font-weight: 500;
@@ -206,9 +206,9 @@
 
 .publication-links a:hover,
 .publication-links button:hover {
-    color: #58609b;
-    border-color: #aeb5d5;
-    background: #f7f8fc;
+    color: var(--theme-text-color);
+    border-color: var(--theme-color-border);
+    background: var(--theme-color-surface-soft);
     text-decoration: none;
     transform: translateY(-1px);
 }
@@ -277,19 +277,19 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #58609b, #8b94c5);
-    box-shadow: 0 0 9px rgba(88, 96, 155, 0.28);
+    background: linear-gradient(135deg, var(--theme-color), var(--theme-color-soft));
+    box-shadow: 0 0 9px color-mix(in srgb, var(--theme-color) 28%, transparent);
     opacity: 0;
     transform: rotate(var(--particle-angle)) translateY(0) scale(0.7);
     animation: fireworkBurst 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .publication-firework i:nth-child(2n) {
-    background: linear-gradient(135deg, #cfd3e6, #58609b);
+    background: linear-gradient(135deg, var(--theme-color-pale), var(--theme-color));
 }
 
 .publication-firework i:nth-child(3n) {
-    background: linear-gradient(135deg, #e2bd7b, #8b94c5);
+    background: linear-gradient(135deg, #e2bd7b, var(--theme-color-soft));
 }
 
 @keyframes citeCopiedPop {

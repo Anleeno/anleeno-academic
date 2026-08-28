@@ -8,16 +8,13 @@ Live demo: [www.anleeno.com](https://www.anleeno.com)
 
 ## Features
 
-- Built with **React 19**, **Vite 7**, modular components, and isolated content datasets for straightforward maintenance and extension.
-- Responsive CSS architecture supports desktop, iPad, and mobile layouts, with adaptive profile, navigation, timeline, and card presentation.
-- Google Scholar integration includes multi-source fetching, HTML/Markdown parsing, title normalization, request timeouts, and 12-hour `localStorage` caching.
-- Canvas-based logo analysis extracts representative colors at runtime to generate adaptive experience-card reflections without hard-coded presets.
-- ESLint enforces code quality, while GitHub Actions provides automated Vite builds and GitHub Pages deployment.
-- Scroll-aware glass navigation, smooth anchor scrolling, and a collapsible mobile menu.
-- Data-driven profile, news, publication, experience timeline, and selected-project sections.
-- Publication cards with abstract previews, paper links, citation copying, visual feedback, and live Scholar citation counts.
-- Responsive project media with image backdrops and accessible hover/focus-to-play video previews.
-- Social links, downloadable résumé, custom experience timeline, and one-click back-to-top navigation.
+- Built with **React 19** and **Vite 7**, with reusable components and data-driven content that keep the codebase organized and easy to customize.
+- Fully responsive across desktop, tablet, and mobile, with adaptive navigation, publication layouts, experience timelines, and project cards.
+- Rich publication support, including abstract previews, paper links, research tags, one-click citation copying, and optional Google Scholar citation counts.
+- Flexible project showcases for images and video, preserving original aspect ratios while maintaining a consistent card layout and hover-to-play interaction.
+- A refined interface with glass-effect navigation, smooth section scrolling, contextual color reflections, and a floating back-to-top control.
+- Centralized theme settings for coordinated text, accents, buttons, labels, borders, and surfaces without editing individual components.
+- Ready for production with ESLint checks, optimized builds, and automated deployment to GitHub Pages through GitHub Actions.
 
 ## Quick Start
 
@@ -50,6 +47,7 @@ Most site content can be updated from these files:
 | Publications | `src/data/publications.js` |
 | Experience | `src/data/experience.js` |
 | Projects | `src/data/projects.js` |
+| Theme color | `src/theme.css` |
 | Images, résumé, logos, and video | `src/assets/` |
 
 Replace the Google Scholar profile URL in `src/utils/scholarCitations.js` if you want to display citation counts. The integration is optional and silently falls back when citation data is unavailable.
