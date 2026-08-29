@@ -161,12 +161,6 @@
     padding-left: 1em;
 }
 
-.exp-details li > span {
-    display: block;
-    text-align: justify;
-    text-justify: inter-word;
-}
-
 .exp-details li::before {
     content: "✦";
     position: absolute;

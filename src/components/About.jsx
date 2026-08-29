@@ -19,7 +19,7 @@ export default function About() {
   return (
     <section className="about" id="about">
       <div className="intro-text">
-        Hi, I&apos;m <strong>Shubo Xu</strong> (aka <strong>Anleeno Xu</strong>), an AI algorithm engineer and researcher working at the intersection of <strong>computer vision, multimodal large language models, AIGC, and AI for Science</strong>. My work focuses on visual perception and multimodal large language models, with an interest in turning research ideas into practical intelligent systems.
+        Hi, I&apos;m <strong>Shubo Xu</strong> (aka <strong>Anleeno Xu</strong>), an AI algorithm engineer and researcher working at the intersection of <strong>computer vision, multimodal large language models, AIGC, and AI Agents</strong>. My work focuses on visual perception and multimodal large language models, with an interest in turning research ideas into practical intelligent systems.
         <br /><br />
         I am currently a <strong>Senior Algorithm Engineer at ByteDance</strong>, following algorithm roles at Baidu and Hello. Beyond research and engineering, I enjoy photography, music, reading, anime, science fiction, philosophy, and meditation.
         <InfoCallout icon={Quote} footer="Rabindranath Tagore" variant="quote">
