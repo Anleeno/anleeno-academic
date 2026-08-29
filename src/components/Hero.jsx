@@ -6,7 +6,8 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaGoogleScholar } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { RiInstagramFill } from "react-icons/ri";
-import { Atom, Camera, ScanEye } from "lucide-react";
+import { TbBrandOpenai } from "react-icons/tb";
+import { Camera, Sparkles } from "lucide-react";
 
 export default function Hero() {
   const links = [
@@ -22,8 +23,8 @@ export default function Hero() {
       <div className="hero-meta">
         <div className="meta-name">Shubo Xu</div><div>Senior Algorithm Engineer</div>
         <div className="meta-description">
-          <div className="meta-description-row"><ScanEye aria-hidden="true" /><span>CV &amp; MLLM Researcher</span></div>
-          <div className="meta-description-row"><Atom aria-hidden="true" /><span>AIGC &amp; AI4Science Explorer</span></div>
+          <div className="meta-description-row"><TbBrandOpenai aria-hidden="true" /><span>CV &amp; MLLM Researcher</span></div>
+          <div className="meta-description-row"><Sparkles aria-hidden="true" /><span>AIGC &amp; AI Agents Explorer</span></div>
           <div className="meta-description-row"><Camera aria-hidden="true" /><span>Photography Enthusiast · Dreamer</span></div>
         </div>
         <div className="meta-link">

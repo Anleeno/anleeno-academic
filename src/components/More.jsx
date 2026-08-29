@@ -1,13 +1,21 @@
 import React, { useRef, useState } from "react";
-import { Smartphone } from "lucide-react";
+import { ScanEye, Smartphone } from "lucide-react";
+import { BsStars } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { SiHuggingface } from "react-icons/si";
+import { TbPhotoSearch } from "react-icons/tb";
 import { projects } from "../data/projects";
 
 const actionDetails = {
   app: { label: "App", Icon: Smartphone },
   github: { label: "GitHub", Icon: FaGithub },
   demo: { label: "Demo", Icon: SiHuggingface },
+};
+
+const metaIcons = {
+  XR: BsStars,
+  "Intelligent Transportation": ScanEye,
+  "Object Recommendation": TbPhotoSearch,
 };
 
 function ProjectMedia({ project }) {
@@ -52,6 +60,17 @@ function ProjectAction({ project }) {
   return <a className="project-link" href={project.link} target="_blank" rel="noreferrer">{content}</a>;
 }
 
+function ProjectMeta({ meta }) {
+  const Icon = metaIcons[meta];
+
+  return (
+    <span className="project-meta">
+      {Icon && <Icon aria-hidden="true" />}
+      <span>{meta}</span>
+    </span>
+  );
+}
+
 export default function More() {
   return (
     <section className="card projects-section" id="projects">
@@ -64,7 +83,7 @@ export default function More() {
               <ProjectMedia project={project} />
             </div>
             <div className="project-body">
-              <span className="project-meta">{project.meta}</span>
+              <ProjectMeta meta={project.meta} />
               <h3>{project.title}</h3>
               <p>{project.text}</p>
               {project.note && <div className="project-note">{project.note}</div>}

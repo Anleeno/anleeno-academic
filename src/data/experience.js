@@ -10,7 +10,7 @@ export const experiences = [
     location: "Shanghai, China",
     role: "Senior MLLM Algorithm Engineer",
     details: [
-      { label: "Scope:", text: "Contributed to CV, MLLM, and agentic applications across TikTok and Doubao ecosystems, including an MLLM-driven spatial perception system based on in-cabin and dashcam imagery." },
+      { label: "Scope:", text: "Contributed to MLLM and agentic applications across TikTok, Doubao, and the local-services ecosystems, including an MLLM-driven spatial perception system based on in-cabin and dashcam imagery." },
       { label: "Key Work:", text: "Applied VLM post-training to road-scene understanding, spatial generation, and AI agents." },
     ],
   },
@@ -22,7 +22,7 @@ export const experiences = [
     role: "Senior CV & Multimodal Algorithm Engineer",
     details: [
       { label: "Scope:", text: "Contributed to multimodal search and educational AI systems in AI Assistant, spanning open-world image understanding, Vision-Grounded RAG, VLM post-training, and autonomous vision-language agents." },
-      { label: "Key Work:", text: "Worked on intent-aware fine-grained Vision-Grounded RAG, feedback-driven reasoning and tool scheduling for education agents, and DORIS for joint object detection and instance-priority recommendation in AI search." },
+      { label: "Key Work:", text: "Worked on intent-aware fine-grained Vision-Grounded RAG for AI search, feedback-driven reasoning and tool scheduling for educational agents, and DORIS for joint object detection and priority-aware instance recommendation in visual search." },
     ],
   },
   {

@@ -161,12 +161,18 @@
     padding-left: 1em;
 }
 
+.exp-details li > span {
+    display: block;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 .exp-details li::before {
     content: "✦";
     position: absolute;
     left: 0;
     top: 1px;
-    color: var(--theme-color-pale);
+    color: color-mix(in srgb, var(--theme-color-soft) 75%, white);
     font-size: 0.9em;
 }
 
