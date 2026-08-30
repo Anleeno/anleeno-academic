@@ -48,14 +48,11 @@
     min-height: 20px;
     padding: 1px 10px;
     border-radius: 9999px;
+    background: var(--theme-color-soft);
     color: #fff;
     font-size: 0.7rem;
     font-weight: 700;
     line-height: 1;
-}
-
-.venue-tag.conference {
-    background: var(--theme-color-soft);
 }
 
 .venue-tag.preprint {
