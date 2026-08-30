@@ -1,0 +1,62 @@
+[
+  {
+    "date": "2026.08",
+    "segments": [
+      {
+        "text": "Joined "
+      },
+      {
+        "text": "ByteDance",
+        "strong": true
+      },
+      {
+        "text": ", focusing on MLLMs and Agents."
+      }
+    ]
+  },
+  {
+    "date": "2026.07",
+    "segments": [
+      {
+        "text": "Our paper "
+      },
+      {
+        "text": "DPC-VQA",
+        "href": "https://arxiv.org/pdf/2604.12813"
+      },
+      {
+        "text": " was accepted by ACM MM'26."
+      }
+    ]
+  },
+  {
+    "date": "2026.01",
+    "segments": [
+      {
+        "text": "Released the preprint "
+      },
+      {
+        "text": "LEAF",
+        "href": "https://arxiv.org/pdf/2601.20689"
+      },
+      {
+        "text": ", a label-efficient image quality assessment framework."
+      }
+    ]
+  },
+  {
+    "date": "2025.07",
+    "segments": [
+      {
+        "text": "Our team placed "
+      },
+      {
+        "text": "Top 2",
+        "strong": true
+      },
+      {
+        "text": " in the VQualA 2025 Challenge; the report appeared at the ICCV workshop."
+      }
+    ]
+  }
+]

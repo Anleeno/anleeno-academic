@@ -37,17 +37,18 @@ npm run lint
 
 ## Customize
 
-Most site content can be updated from these files:
+Most site content can be updated through beginner-friendly JSON files. See
+[`config/README.md`](config/README.md) for a short editing guide.
 
 | Content | File |
 | --- | --- |
 | Profile and social links | `src/components/Hero.jsx` |
 | Biography | `src/components/About.jsx` |
-| News | `src/data/news.js` |
-| Publications | `src/data/publications.js` |
-| Experience | `src/data/experience.js` |
-| Projects | `src/data/projects.js` |
-| Theme color | `src/theme.css` |
+| News | `config/news.json` |
+| Publications | `config/publications.json` |
+| Experience | `config/experience.json` |
+| Projects | `config/projects.json` |
+| Theme colors | `config/theme.jsonc` |
 | Images, résumé, logos, and video | `src/assets/` |
 
 Replace the Google Scholar profile URL in `src/utils/scholarCitations.js` if you want to display citation counts. The integration is optional and silently falls back when citation data is unavailable.

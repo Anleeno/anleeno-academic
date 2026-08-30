@@ -4,7 +4,6 @@ import About from './components/About';
 import Publications from './components/Publications';
 import Experience from './components/Experience';
 import Footer from './components/Footer';
-import './theme.css';
 import './App.css';
 import "./css/All.css";
 import News from "./components/News.jsx";

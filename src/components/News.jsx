@@ -1,5 +1,5 @@
 import React from "react";
-import { newsItems } from "../data/news";
+import { newsItems } from "../siteConfig";
 
 function NewsSegment({ segment }) {
   if (segment.href) {

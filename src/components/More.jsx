@@ -4,7 +4,7 @@ import { BsStars } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { SiHuggingface } from "react-icons/si";
 import { TbPhotoSearch } from "react-icons/tb";
-import { projects } from "../data/projects";
+import { projects } from "../siteConfig";
 
 const actionDetails = {
   app: { label: "App", Icon: Smartphone },

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineCheck, AiOutlineCopy, AiOutlineFileText } from "react-icons/ai";
 import "../css/Publications.css";
-import { publications } from "../data/publications";
+import { publications } from "../siteConfig";
 import { fetchScholarCitations, resolveCitationCount } from "../utils/scholarCitations";
 
 function copyText(text) {

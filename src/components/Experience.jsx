@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "../css/Experience.css";
-import { experiences } from "../data/experience";
+import { experiences } from "../siteConfig";
 
 export default function Experience() {
   const timelineRef = useRef(null);
