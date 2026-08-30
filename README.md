@@ -42,8 +42,8 @@ Most site content can be updated through beginner-friendly JSON files. See
 
 | Content | File |
 | --- | --- |
-| Profile and social links | `src/components/Hero.jsx` |
-| Biography | `src/components/About.jsx` |
+| Profile and social links | `config/hero.json` |
+| Biography | `config/about.json` |
 | News | `config/news.json` |
 | Publications | `config/publications.json` |
 | Experience | `config/experience.json` |

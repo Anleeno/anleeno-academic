@@ -5,6 +5,8 @@ need to edit React or CSS source code for the content listed below.
 
 | File | What it controls |
 | --- | --- |
+| `hero.json` | Profile, title, labels, résumé, and social links |
+| `about.json` | Biography and quote |
 | `news.json` | News timeline |
 | `publications.json` | Publication cards |
 | `experience.json` | Experience cards |

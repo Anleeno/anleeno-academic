@@ -2,6 +2,8 @@ import newsItems from "../config/news.json";
 import publicationItems from "../config/publications.json";
 import experienceItems from "../config/experience.json";
 import projectItems from "../config/projects.json";
+import heroData from "../config/hero.json";
+import aboutData from "../config/about.json";
 import themeSource from "../config/theme.jsonc?raw";
 
 const theme = JSON.parse(themeSource.replace(/\/\*[\s\S]*?\*\//g, ""));
@@ -21,6 +23,18 @@ function resolveAsset(path) {
 }
 
 export { newsItems };
+
+export const hero = {
+  ...heroData,
+  profileImage: resolveAsset(heroData.profileImage),
+  brandLogo: resolveAsset(heroData.brandLogo),
+  primaryLinks: heroData.primaryLinks.map((link) => ({
+    ...link,
+    url: link.asset ? resolveAsset(link.asset) : link.url,
+  })),
+};
+
+export const about = aboutData;
 
 export const publications = publicationItems.map((publication) => ({
   ...publication,

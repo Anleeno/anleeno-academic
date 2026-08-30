@@ -1,0 +1,22 @@
+{
+  "paragraphs": [
+    [
+      { "text": "Hi, I'm " },
+      { "text": "Shubo Xu", "strong": true },
+      { "text": " (aka " },
+      { "text": "Anleeno Xu", "strong": true },
+      { "text": "), an AI algorithm engineer and researcher working at the intersection of " },
+      { "text": "computer vision, multimodal large language models, AIGC, and AI Agents", "strong": true },
+      { "text": ". My work focuses on visual perception and multimodal large language models, with an interest in turning research ideas into practical intelligent systems." }
+    ],
+    [
+      { "text": "I am currently a " },
+      { "text": "Senior Algorithm Engineer at ByteDance", "strong": true },
+      { "text": ", following algorithm roles at Baidu and Hello. Beyond research and engineering, I enjoy photography, music, reading, anime, science fiction, philosophy, and meditation." }
+    ]
+  ],
+  "quote": {
+    "text": "Let life be beautiful like summer flowers and death like autumn leaves.",
+    "author": "Rabindranath Tagore"
+  }
+}

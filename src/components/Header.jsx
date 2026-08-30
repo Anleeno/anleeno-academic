@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BookOpen, BriefcaseBusiness, FolderKanban, Newspaper, UserRound } from "lucide-react";
 import "../css/Header.css";
-import logo from "../assets/anleeno-logo.svg";
+import { hero } from "../siteConfig";
 
 const NAV = [
   { id: "about", label: "About", icon: UserRound },
@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <header className={`header-wrapper ${scrolled ? "is-scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}><div className="header-container">
       <button className="header-name brand-button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-        <img className="brand-logo" src={logo} alt="Shubo Xu logo" />
+        <img className="brand-logo" src={hero.brandLogo} alt={`${hero.name} logo`} />
       </button>
       <button className={`hamburger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen}><span className="bar bar1" /><span className="bar bar2" /><span className="bar bar3" /></button>
       <nav className={`header-nav ${menuOpen ? "show" : ""}`}>{NAV.map((item) => {

@@ -1,0 +1,57 @@
+{
+  "name": "Shubo Xu",
+  "title": "Senior Algorithm Engineer",
+  "profileImage": "assets/anleeno-home-profile.png",
+  "brandLogo": "assets/anleeno-logo.svg",
+  "descriptions": [
+    {
+      "icon": "openai",
+      "text": "CV & MLLM Researcher"
+    },
+    {
+      "icon": "sparkles",
+      "text": "AIGC & AI Agents Explorer"
+    },
+    {
+      "icon": "camera",
+      "text": "Photography Enthusiast · Dreamer"
+    }
+  ],
+  "primaryLinks": [
+    {
+      "label": "Portfolio",
+      "url": "https://encore.anleeno.com"
+    },
+    {
+      "label": "Resume",
+      "asset": "assets/Anleeno-Xu-Resume-mini.pdf"
+    }
+  ],
+  "socialLinks": [
+    {
+      "label": "Email",
+      "icon": "email",
+      "url": "mailto:xushubo0805@gmail.com"
+    },
+    {
+      "label": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/Anleeno/anleeno-academic"
+    },
+    {
+      "label": "Google Scholar",
+      "icon": "scholar",
+      "url": "https://scholar.google.com/citations?hl=en&user=Ih094PwAAAAJ&view_op=list_works&sortby=pubdate"
+    },
+    {
+      "label": "LinkedIn",
+      "icon": "linkedin",
+      "url": "https://www.linkedin.com/in/anleeno0805"
+    },
+    {
+      "label": "Instagram",
+      "icon": "instagram",
+      "url": "https://www.instagram.com/anleeno_ss"
+    }
+  ]
+}
