@@ -106,12 +106,13 @@ For a custom domain, replace or remove `public/CNAME` and configure the same dom
 
 ## License
 
-No open-source license is currently granted for this repository.
+The website code is available under the [MIT License](LICENSE).
+Personal content and media are excluded and may not be reused without permission;
+see [content and media terms](CONTENT-LICENSE.md).
 
-Unless otherwise stated, all personal content and media assets—including photographs, illustrations, profile information, résumé materials, publication figures, project images, videos, logos, and branding—are © Shubo Xu. All rights reserved. These materials may not be copied, modified, redistributed, or used in derivative works without prior written permission.
-
-Rights to code and materials originating from third-party projects remain with their respective copyright holders.
+Third-party code and materials retain their respective licenses and copyright
+notices; this project's license does not override those terms.
 
 ## Acknowledgements
 
-This project is derived in part from [LucyLing24/longling](https://github.com/LucyLing24/longling).
+This project is derived from [LucyLing24/longling](https://github.com/LucyLing24/longling).
