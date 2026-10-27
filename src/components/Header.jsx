@@ -2,6 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Award, GraduationCap, BookOpen, BriefcaseBusiness, FolderKanban, Newspaper, UserRound } from "lucide-react";
 import "../css/Header.css";
 import { hero, education, awards, isSectionVisible } from "../siteConfig";
+import recommendations from "../../config/paper-recommendations.json";
+import { isDailyPapersVisible } from "../utils/sectionVisibility";
+
+function DailyPaperIcon(props) {
+  return <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 3H5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M7 11h5M7 15h8M7 18h6" />
+    <path d="m18 2 1.3 3.7L23 7l-3.7 1.3L18 12l-1.3-3.7L13 7l3.7-1.3Z" />
+  </svg>;
+}
 
 const NAV = [
   { id: "about", label: "About", icon: UserRound },
@@ -11,6 +20,7 @@ const NAV = [
   ...(isSectionVisible(education) ? [{ id: "education", label: "Education", icon: GraduationCap }] : []),
   ...(isSectionVisible(awards) ? [{ id: "awards", label: "Awards", icon: Award }] : []),
   { id: "projects", label: "Projects", icon: FolderKanban },
+  ...(isDailyPapersVisible(recommendations) ? [{ id: "daily-papers", label: "Trends", icon: DailyPaperIcon }] : []),
 ];
 
 export default function Header() {
@@ -28,7 +38,7 @@ export default function Header() {
     setMenuOpen(false);
   };
   return (
-    <header className={`header-wrapper ${scrolled ? "is-scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}><div className="header-container">
+    <header style={{ "--nav-count": NAV.length }} className={`header-wrapper ${scrolled ? "is-scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}><div className="header-container">
       <button className="header-name brand-button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
         <img className="brand-logo" src={hero.brandLogo} alt={`${hero.name} logo`} />
       </button>

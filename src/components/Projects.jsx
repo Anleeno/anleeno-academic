@@ -6,6 +6,7 @@ import { FaGithub } from "react-icons/fa";
 import { SiHuggingface } from "react-icons/si";
 import { TbPhotoSearch } from "react-icons/tb";
 import { projects } from "../siteConfig";
+import DailyPapers from "./DailyPapers";
 
 const actionDetails = {
   app: { label: "App", Icon: Smartphone },
@@ -93,6 +94,7 @@ export default function Projects() {
           </article>
         ))}
       </div>
+      <DailyPapers />
       <div className="card-title portfolio-progress-title">More to Come</div>
       <p className="portfolio-progress-text">My portfolio is still under construction—more stories are on the way.</p>
     </section>

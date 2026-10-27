@@ -1,7 +1,7 @@
 .news-list {
     margin: 0;
-    max-height: 6em; /* 控制显示高度，大约5条 */
-    overflow-y: auto; /* 可以下拉滚动 */
+    max-height: 6em; /* Limit the visible list height */
+    overflow-y: auto; /* Scroll longer lists */
     /*border: none;*/
     padding: 6px 12px ;
     /*background: #fff;*/
@@ -23,7 +23,7 @@
 
 .news-list li {
     display: grid;
-    grid-template-columns: 80px 1fr; /* 表格结构：左边时间，右边内容 */
+    grid-template-columns: 80px 1fr; /* Date on the left, content on the right */
 
     padding: 2px 0;
     align-items: center;

@@ -351,7 +351,7 @@
 
 .publication-author-tag.is-citation {
     border-color: #e6def2;
-    background: #f3effa;
+    background: rgb(88 96 155 / 8%);
     color: #8d84a6;
     font-weight: 600;
 }

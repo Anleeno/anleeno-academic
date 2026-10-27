@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "endpoint": "",
+  "limit": 4,
+  "cacheMinutes": 30,
+  "daily": {
+    "enabled": true,
+    "limit": 4,
+    "keywords": ["Large Language Model", "Reinforcement Learning", "Multimodal", "AI Agents", "AIGC"]
+  }
+}

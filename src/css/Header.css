@@ -7,23 +7,23 @@
     width: 100%;
     height: 60px;
     text-align: center;
-    background: rgba(224, 223, 223, 0.22);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(224, 223, 223, 0.32);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
     z-index: 1000;
     border-bottom: 0;
     box-shadow: 0 4px 12px rgba(9, 5, 29, 0.09);
     transition: background-color 0.3s ease-out, backdrop-filter 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 .header-wrapper.is-scrolled {
-    background-color: rgba(224, 223, 223, 0.58);
+    background-color: rgba(224, 223, 223, 0.66);
     box-shadow: 0 10px 10px rgba(9, 5, 29, 0.173);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
 }
 @supports (-webkit-backdrop-filter: blur(4px)) {
     .header-wrapper {
-        background-color: rgba(224, 223, 223, 0.22);
+        background-color: rgba(224, 223, 223, 0.32);
     }
 }
 
@@ -43,7 +43,7 @@
     justify-content: center;
     align-items: center;
 }
-/* 名称 / LOGO 部分 */
+/* Name / logo */
 .header-name .name-main {
     font-family: 'Sigmar One', serif;
     /*font-family: 'Playfair Display', serif;*/
@@ -78,7 +78,7 @@
     100% { transform: rotateY(360deg) scale(0.8); }
 }
 
-/* 导航 */
+/* Navigation */
 .header-nav {
     display: flex;
     gap: 0;
@@ -111,6 +111,7 @@
 }
 
 .nav-item-content {
+    white-space: nowrap;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -126,7 +127,7 @@
     color: var(--theme-text-color);
 }
 
-/* 在按钮底部加一条 hover 下划线效果 */
+/* Underline navigation buttons on hover */
 .header-nav .nav-item::after {
     content: '';
     position: absolute;
@@ -144,9 +145,9 @@
     width: calc(100% - 1.3rem);
 }
 
-/* ===== 汉堡（可控制样式） ===== */
+/* ===== Menu toggle ===== */
 .hamburger {
-    display: none; /* 在桌面隐藏，移动端显示 */
+    display: none; /* Hidden on desktop; shown on mobile */
     width: 36px;
     height: 36px;
     position: relative;
@@ -154,14 +155,14 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1200; /* 高于 header-nav */
+    z-index: 1200; /* Above header-nav */
     border: none !important;
 }
 
 
 .header-wrapper button {
-    -webkit-tap-highlight-color: transparent; /* 移动端点击时不出现灰色/蓝色高亮 */
-    -webkit-focus-ring-color: transparent; /* 去除Safari focus环 */
+    -webkit-tap-highlight-color: transparent; /* Suppress native tap highlight */
+    -webkit-focus-ring-color: transparent; /* Suppress native Safari ring */
     outline: none;
     border: none;
 }
@@ -177,7 +178,7 @@
     background: transparent;
 }
 
-/* 三条横线：用绝对定位，便于旋转成 X */
+/* Absolute positioning allows the three bars to rotate into an X */
 .hamburger .bar {
     position: absolute;
     left: 8px;
@@ -189,12 +190,12 @@
     transform-origin: center;
 }
 
-/* 三条线的纵向位置 */
+/* Vertical bar positions */
 .hamburger .bar1 { top: 10px; }
 .hamburger .bar2 { top: 17px; }
 .hamburger .bar3 { top: 24px; }
 
-/* 点击展开时变成 X（用 rotate，不用大幅 translate）*/
+/* Rotate into an X when expanded */
 .hamburger.open .bar1 {
     transform: translateY(7px) rotate(45deg);
 }
@@ -206,8 +207,8 @@
     transform: translateY(-7px) rotate(-45deg);
 }
 
-/* 移动端专属样式 */
-@media (max-width: 1100px) {
+/* Mobile styles */
+@media (max-width: 1240px) {
     .header-wrapper {
         height: 64px;
         overflow: hidden;
@@ -223,14 +224,14 @@
         position: relative;
     }
 
-    /* 显示汉堡按钮 */
+    /* Show the menu toggle */
     .hamburger {
         display: inline-flex;
         align-items: center;
         justify-content: center;
     }
 
-    /* 菜单默认隐藏（脱离文档流），用 transform + opacity 做动画 */
+    /* Hidden outside the document flow; animate transform and opacity */
     .header-nav {
         position: fixed;
         top: 64px;
@@ -240,7 +241,8 @@
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
-        overflow: hidden;
+        overflow: auto;
+        max-height: calc(100dvh - 64px);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -259,7 +261,7 @@
         z-index: 1100;
     }
 
-    /* 展开状态：平滑滑入 */
+    /* Slide in when expanded */
     .header-nav.show {
         transform: translateY(0);
         opacity: 1;
@@ -268,6 +270,7 @@
     }
 
     .header-nav .nav-item {
+        flex-shrink: 0;
         z-index: 1;
         font-size: 1rem;
         padding: 12px 8px;
@@ -311,16 +314,16 @@
     }
 
 
-    /* ===== 关键：当菜单打开时，关闭 header 自身的阴影，避免视觉叠加 ===== */
+    /* Remove the header shadow while the menu is open to avoid stacking */
     .header-wrapper.menu-open {
-        height: 334px;
-        background: rgba(232, 232, 232, 0.24);
-        backdrop-filter: blur(7px);
-        -webkit-backdrop-filter: blur(7px);
+        height: min(100dvh, calc(96px + var(--nav-count) * 52px));
+        background: rgba(232, 232, 232, 0.34);
+        backdrop-filter: blur(9px);
+        -webkit-backdrop-filter: blur(9px);
         box-shadow: none !important;
     }
 
-    /* 避免页面内容被遮挡：当菜单展开，可以在 body 上加 padding-top (若需要) */
+    /* Optional body padding can prevent overlap when the menu is expanded */
 }
 .brand-button {
     border: 0;

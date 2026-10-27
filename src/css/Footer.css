@@ -120,14 +120,14 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .site-footer-content {
     flex-direction: column;
     justify-content: center;
   }
 
   .back-to-top {
-    right: max(3rem, calc(env(safe-area-inset-right) + 1.5rem));
+    right: max(2rem, calc(env(safe-area-inset-right) + 1rem));
     bottom: max(3rem, calc(env(safe-area-inset-bottom) + 1.5rem));
     width: 40px;
     height: 40px;

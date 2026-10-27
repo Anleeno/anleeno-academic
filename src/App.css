@@ -1,4 +1,4 @@
-/* ======== 全局 ======== */
+/* ======== Global ======== */
 body {
   margin: 0;
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -31,7 +31,7 @@ a:hover {
   color: var(--theme-text-color);
 }
 
-/* ======== 布局 ======== */
+/* ======== Layout ======== */
 .App {
   min-height: 100vh;
 }
@@ -53,12 +53,12 @@ header:where(.header-wrapper){
   z-index: 10;
 }
 
-/* ======== 左侧 Hero ======== */
+/* ======== Left hero ======== */
 .left-hero {
   position: fixed;
   top: calc(50% + 20px);
   left: 0;
-  transform: translateY(-50%); /* 垂直居中 */
+  transform: translateY(-50%); /* Center vertically */
   width: 320px;
   display: flex;
   justify-content: center;
@@ -72,7 +72,7 @@ header:where(.header-wrapper){
 }
 
 
-/* ======== 右侧内容 ======== */
+/* ======== Main content ======== */
 .right-content {
   flex: 1;
   padding: 2rem 8rem 2rem 10rem;
@@ -84,7 +84,7 @@ header:where(.header-wrapper){
   margin: 2rem;
 }
 
-/* ======== Header 导航 ======== */
+/* ======== Header navigation ======== */
 nav {
   display: flex;
   justify-content: center;
@@ -100,7 +100,7 @@ nav a:hover {
   color: var(--theme-text-color);
 }
 
-/* ======== 响应式布局 ======== */
+/* ======== Responsive layout ======== */
 @media (max-width: 1100px) {
   .main-layout {
     flex-direction: column;

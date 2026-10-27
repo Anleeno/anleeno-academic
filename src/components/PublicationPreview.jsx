@@ -1,10 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useModalDialog } from "../hooks/useModalDialog";
 import { ArrowLeft, ArrowRight, X, Maximize2, Minus, FileText, BookOpen, Quote } from "lucide-react";
 import "@fontsource-variable/newsreader/wght.css";
 import { publicationPreviews as stories } from "../siteConfig";
 import "../css/PublicationPreview.css";
+import "../css/PaperWindow.css";
 import { publicationTemplates, resolvePublicationPreview } from "../utils/publicationTemplates";
+import RelatedPapers from "./RelatedPapers";
+
+import PdfPreview from "./PdfPreview";
+import { loadPdfDocument } from "../utils/loadPdfDocument";
 
 function MetricBars({ rows, title, percent = false }) {
   return <div className="metric-bars"><h4>{title}</h4><p className="metric-scale">{percent ? "Accuracy · 0–100%" : "Correlation · 0–1"}</p>
@@ -37,14 +42,23 @@ export default function PublicationPreview({ paper, papers, onChange, onClose, o
   useModalDialog(dialog);
   const scrollArea = useRef(null);
   const [expanded, setExpanded] = useState(false);
+  const [pdfOpen, setPdfOpen] = useState(false);
+  useEffect(() => { void loadPdfDocument().catch(() => {}); }, []);
+  const paperButton = useRef(null);
+  const returnFocus = useRef(null);
+  const pointerOpened = useRef(false);
+  const [relatedPdf, setRelatedPdf] = useState(null);
   const story = resolvePublicationPreview(paper, stories[paper.id]);
   const layout = story.template;
   const index = papers.findIndex(item => item.id === paper.id);
+  useLayoutEffect(() => {
+    // Reset after the new paper's DOM is mounted, before painting or scroll anchoring.
+    scrollArea.current?.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [paper.id]);
 
   function changePaper(offset) {
     setExpanded(false);
     onChange(papers[(index + offset + papers.length) % papers.length]);
-    scrollArea.current.scrollTo({ top: 0 });
   }
 
   const introduction = <section className="study-overview">
@@ -61,7 +75,7 @@ export default function PublicationPreview({ paper, papers, onChange, onClose, o
     <figcaption><span>{story.figureCaption}</span><button type="button" aria-expanded={expanded} onClick={() => setExpanded(value => !value)}>{expanded ? <Minus /> : <Maximize2 />}{expanded ? "Fit figure" : "Enlarge"}</button></figcaption>
   </figure>;
 
-  return <dialog className={`research-preview study--${publicationTemplates[layout]?.className ?? "basic"}`} ref={dialog} aria-labelledby="research-paper-title" onCancel={onClose} onClick={event => { if (event.target === event.currentTarget) onClose(); }}>
+  return <><dialog className={`research-preview study--${publicationTemplates[layout]?.className ?? "basic"}`} ref={dialog} onPointerDownCapture={() => { pointerOpened.current = true; }} onKeyDownCapture={() => { pointerOpened.current = false; }} aria-labelledby="research-paper-title" onCancel={onClose} onClick={event => { if (event.target === event.currentTarget) onClose(); }}>
     <svg className="study-image-filters" aria-hidden="true" width="0" height="0">
       <defs>
         <filter id="study-remove-white" colorInterpolationFilters="sRGB">
@@ -79,7 +93,7 @@ export default function PublicationPreview({ paper, papers, onChange, onClose, o
         <button type="button" aria-label="Close paper preview" onClick={onClose}><X /></button>
       </div>
     </div>
-    <div className="research-scroll" ref={scrollArea}>
+    <div className="research-scroll" ref={scrollArea} key={`paper-content-${paper.id}`}>
       <div className="study-heading">
         <p className="study-eyebrow">{story.category}</p>
         <div className="study-title-row">
@@ -90,13 +104,14 @@ export default function PublicationPreview({ paper, papers, onChange, onClose, o
         <div className="study-byline">
         <p className="study-authors">{paper.authors.map((author, i) => author.strong ? <strong key={i}>{author.text}</strong> : <React.Fragment key={i}>{author.text}</React.Fragment>)}</p>
         <div className="study-resources">
-          <a href={paper.link} target="_blank" rel="noreferrer"><FileText aria-hidden="true" />Paper</a>
+          <button ref={paperButton} type="button" onClick={() => setPdfOpen(true)} aria-haspopup="dialog"><FileText aria-hidden="true" />Paper</button>
           {story.source !== paper.link && <a href={story.source} target="_blank" rel="noreferrer"><BookOpen aria-hidden="true" />Full text</a>}
           <button type="button" onClick={event => onCopy(paper, event, false)}><Quote aria-hidden="true" /><span aria-live="polite">{copied === paper.id ? "Copied" : "Cite"}</span></button>
         </div>
         </div>
       </div>
       <div className="study-content">
+        <details className="study-abstract study-abstract-top" id="study-abstract" key={`abstract-${paper.id}`} open={story.abstractExpanded || undefined}><summary>{story.labels.abstract} <span>+</span></summary><div>{(paper.abstract || "Abstract not provided.").split(/\n\s*\n/).map((text, i) => <p key={i}>{text}</p>)}</div></details>
         {layout !== "basic" && <>
         {layout === "comparison" && introduction}
         {layout === "narrative" && <section className="study-question"><p className="study-eyebrow">{story.labels.idea}</p><h3>{story.takeaway}</h3><p>{story.intro}</p></section>}
@@ -108,10 +123,15 @@ export default function PublicationPreview({ paper, papers, onChange, onClose, o
           <p className="study-result-context">{story.resultNote}</p>
         </section>}
         {layout === "challenge" && <section className="challenge-opening">
+          <div className="challenge-summary">
+          <div>
           <p className="study-eyebrow">{story.openingLabel}</p>
           <h3>{story.takeaway}</h3>
+          </div>
+          <aside className="study-highlight"><strong>{story.highlight}</strong><span>{story.highlightLabel}</span><p>{story.highlightContext}</p></aside>
+          </div>
           <figure className="study-task"><img src={paper.image} alt={story.taskCaption || paper.title} /><figcaption>{story.taskCaption}</figcaption></figure>
-          <div className="challenge-entry"><aside className="study-highlight"><strong>{story.highlight}</strong><span>{story.highlightLabel}</span><p>{story.highlightContext}</p></aside><div><p className="study-eyebrow">{story.labels.entry}</p><p>{story.intro}</p></div></div>
+          <div className="challenge-entry"><p className="study-eyebrow">{story.labels.entry}</p><p>{story.intro}</p></div>
         </section>}
         <section className="study-method" aria-label="Method overview">
         <div className="study-section-heading"><p className="study-eyebrow">{story.labels.method}</p><h3>{story.headline}</h3></div>
@@ -145,9 +165,11 @@ export default function PublicationPreview({ paper, papers, onChange, onClose, o
           <a className="study-source" href={story.source} target="_blank" rel="noreferrer">{story.sourceLabel}</a>
         </section>}
         </>}
-        <details className="study-abstract" id="study-abstract" key={paper.id} open={story.abstractExpanded || undefined}><summary>{story.labels.abstract} <span>+</span></summary><div>{(paper.abstract || "Abstract not provided.").split(/\n\s*\n/).map((text, i) => <p key={i}>{text}</p>)}</div></details>
         <div className="study-bottom"><span>{paper.venue}</span><a href={story.source} target="_blank" rel="noreferrer">Continue reading the full paper</a></div>
+        <RelatedPapers key={`related-${paper.id}`} paper={paper} onOpen={(item, button) => { returnFocus.current = button; setRelatedPdf(item); setPdfOpen(true); }} />
       </div>
     </div>
-  </dialog>;
+  </dialog>
+  {pdfOpen && <PdfPreview key={relatedPdf?.id || paper.id} url={relatedPdf?.pdfUrl || paper.pdfUrl || paper.link} name={relatedPdf?.title || paper.title} kind="paper" onClose={() => { setPdfOpen(false); setRelatedPdf(null); const target = pointerOpened.current ? dialog.current : (returnFocus.current || paperButton.current); returnFocus.current = null; requestAnimationFrame(() => target?.focus({ preventScroll: true })); }} />}
+  </>;
 }

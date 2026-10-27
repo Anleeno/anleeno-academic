@@ -1,0 +1,8 @@
+{
+  "name": "anleeno-arxiv-recommendations",
+  "main": "arxiv-worker.js",
+  "compatibility_date": "2026-10-01",
+  "vars": {
+    "ALLOWED_ORIGINS": "https://anleeno.com,https://www.anleeno.com,https://anleeno.github.io"
+  }
+}

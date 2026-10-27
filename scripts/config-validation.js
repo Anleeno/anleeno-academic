@@ -12,6 +12,7 @@ export const configTypes = {
   "publications.json": "publications", "experience.json": "experience",
   "projects.json": "projects", "education.json": "education", "awards.json": "awards",
   "publication-previews.json": "previews", "theme.jsonc": "theme",
+  "paper-recommendations.json": "recommendations",
 };
 const schema = JSON.parse(fs.readFileSync(path.join(root, "config/schemas/site.schema.json"), "utf8"));
 const ajv = new Ajv({ allErrors: true, strict: false });

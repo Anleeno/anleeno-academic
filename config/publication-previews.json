@@ -5,9 +5,9 @@
     "blendFigureBackground": true,
     "name": "DPC-VQA",
     "takeaway": "Keep the perceptual model. Learn the correction.",
-    "highlight": "155M",
-    "highlightLabel": "trainable parameters",
-    "highlightContext": "The perception backbone stays frozen; only the calibration branch is optimized.",
+    "highlight": "1st",
+    "highlightLabel": "Across five benchmarks",
+    "highlightContext": "Among the compared few-shot methods, spanning UGC and AIGC.",
     "steps": [
       {
         "title": "Perceive",
@@ -32,7 +32,7 @@
     "source": "https://arxiv.org/html/2604.12813v2",
     "sourceLabel": "Table 1 · §4.1 · §4.4.2",
     "method": "The calibration branch combines visual and auxiliary video features with the model’s base score and confidence. It predicts a bounded correction rather than learning the quality score from scratch.",
-    "footnote": "Only the calibration branch is optimized: 155M trainable parameters versus approximately 8.2B for full fine-tuning. This reduces optimization cost, not the memory needed for frozen-model inference.",
+    "footnote": "The perception backbone stays frozen during adaptation; only the calibration branch is optimized. The frozen model is still required at inference.",
     "rows": [
       {
         "label": "KoNViD-1k",
@@ -143,8 +143,8 @@
     "name": "VQualA 2025",
     "takeaway": "Compare visual quality through complementary model judgments.",
     "highlight": "2nd",
-    "highlightLabel": "of five final submissions",
-    "highlightContext": "Digital Ocean achieved 75.60% overall accuracy in the official challenge.",
+    "highlightLabel": "Overall ranking",
+    "highlightContext": "We achieved 75.60% overall accuracy in the official challenge.",
     "steps": [
       {
         "title": "Adapt",
