@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import "../css/Projects.css";
 import { ScanEye, Smartphone } from "lucide-react";
 import { BsStars } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
@@ -71,7 +72,7 @@ function ProjectMeta({ meta }) {
   );
 }
 
-export default function More() {
+export default function Projects() {
   return (
     <section className="card projects-section" id="projects">
       <div className="card-title">Selected Projects</div>

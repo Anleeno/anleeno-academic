@@ -1,6 +1,5 @@
-const GOOGLE_SCHOLAR_PROFILE =
-  "https://scholar.google.com/citations?hl=en&user=Ih094PwAAAAJ&view_op=list_works&sortby=pubdate";
-const CACHE_KEY = "anleeno:google-scholar-citations:v1";
+import { scholarProfileUrl as GOOGLE_SCHOLAR_PROFILE } from "../siteConfig";
+const CACHE_KEY = `anleeno:google-scholar-citations:v1:${GOOGLE_SCHOLAR_PROFILE || "disabled"}`;
 const CACHE_TTL_MS = 12 * 60 * 60 * 1000;
 
 function normalizeTitle(value = "") {
@@ -79,6 +78,7 @@ async function fetchText(url) {
 }
 
 export async function fetchScholarCitations() {
+  if (!GOOGLE_SCHOLAR_PROFILE) return {};
   const cached = readCache();
   if (cached) return cached;
 

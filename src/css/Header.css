@@ -7,29 +7,30 @@
     width: 100%;
     height: 60px;
     text-align: center;
-    background: rgba(224, 223, 223, 0.28);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(224, 223, 223, 0.22);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     z-index: 1000;
     border-bottom: 0;
     box-shadow: 0 4px 12px rgba(9, 5, 29, 0.09);
     transition: background-color 0.3s ease-out, backdrop-filter 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 .header-wrapper.is-scrolled {
-    background-color: rgba(224, 223, 223, 0.66);
+    background-color: rgba(224, 223, 223, 0.58);
     box-shadow: 0 10px 10px rgba(9, 5, 29, 0.173);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
 }
 @supports (-webkit-backdrop-filter: blur(4px)) {
     .header-wrapper {
-        background-color: rgba(224, 223, 223, 0.28);
+        background-color: rgba(224, 223, 223, 0.22);
     }
 }
 
 .header-container {
     margin: 0 auto;
     width: min(100%, 1320px);
+    height: 100%;
     box-sizing: border-box;
     padding: 0.3rem 2rem;
     display: flex;
@@ -314,8 +315,8 @@
     .header-wrapper.menu-open {
         height: 334px;
         background: rgba(232, 232, 232, 0.24);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
         box-shadow: none !important;
     }
 
@@ -330,8 +331,8 @@
 
 .brand-logo {
     display: block;
-    width: 2.6em;
-    height: 2.6em;
+    width: 144px;
+    height: 42px;
     object-fit: contain;
     flex: 0 0 auto;
 }

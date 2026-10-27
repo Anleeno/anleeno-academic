@@ -12,7 +12,7 @@
       },
       {
         "label": "Key Work:",
-        "text": "Applied VLM post-training to road-scene understanding, spatial generation, and AI agents."
+        "text": "Applied VLM post-training techniques, including supervised fine-tuning (SFT) and reinforcement learning, to support road-scene understanding, spatial generation, and AI agents."
       }
     ]
   },
@@ -29,7 +29,7 @@
       },
       {
         "label": "Key Work:",
-        "text": "Worked on intent-aware fine-grained Vision-Grounded RAG for AI search, feedback-driven reasoning and tool scheduling for educational agents, and DORIS for joint object detection and priority-aware instance recommendation in visual search."
+        "text": "Worked on intent-aware, fine-grained vision-grounded RAG for AI search and feedback-driven reasoning with tool orchestration for educational agents. Also developed DORIS to jointly detect and rank objects for recommendation in visual search."
       }
     ]
   },

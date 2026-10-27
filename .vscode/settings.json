@@ -1,0 +1,15 @@
+{
+  "json.schemas": [
+    { "fileMatch": ["/config/site.json"], "url": "./config/schemas/site.schema.json#/$defs/site" },
+    { "fileMatch": ["/config/hero.json"], "url": "./config/schemas/site.schema.json#/$defs/hero" },
+    { "fileMatch": ["/config/about.json"], "url": "./config/schemas/site.schema.json#/$defs/about" },
+    { "fileMatch": ["/config/news.json"], "url": "./config/schemas/site.schema.json#/$defs/news" },
+    { "fileMatch": ["/config/publications.json"], "url": "./config/schemas/site.schema.json#/$defs/publications" },
+    { "fileMatch": ["/config/experience.json"], "url": "./config/schemas/site.schema.json#/$defs/experience" },
+    { "fileMatch": ["/config/projects.json"], "url": "./config/schemas/site.schema.json#/$defs/projects" },
+    { "fileMatch": ["/config/education.json"], "url": "./config/schemas/site.schema.json#/$defs/education" },
+    { "fileMatch": ["/config/awards.json"], "url": "./config/schemas/site.schema.json#/$defs/awards" },
+    { "fileMatch": ["/config/publication-previews.json"], "url": "./config/schemas/site.schema.json#/$defs/previews" },
+    { "fileMatch": ["/config/theme.jsonc"], "url": "./config/schemas/site.schema.json#/$defs/theme" }
+  ]
+}

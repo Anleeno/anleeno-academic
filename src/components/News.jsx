@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/News.css";
 import { newsItems } from "../siteConfig";
 
 function NewsSegment({ segment }) {

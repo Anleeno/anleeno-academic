@@ -1,12 +1,17 @@
 import newsItems from "../config/news.json";
+import siteData from "../config/site.json";
 import publicationItems from "../config/publications.json";
 import experienceItems from "../config/experience.json";
 import projectItems from "../config/projects.json";
 import heroData from "../config/hero.json";
 import aboutData from "../config/about.json";
+import educationData from "../config/education.json";
+import awardsData from "../config/awards.json";
 import themeSource from "../config/theme.jsonc?raw";
+import previewItems from "../config/publication-previews.json";
+import { parseConfig } from "./utils/parseConfig";
 
-const theme = JSON.parse(themeSource.replace(/\/\*[\s\S]*?\*\//g, ""));
+const theme = parseConfig(themeSource, "config/theme.jsonc", true);
 
 const assets = import.meta.glob("./assets/**/*", {
   eager: true,
@@ -23,6 +28,15 @@ function resolveAsset(path) {
 }
 
 export { newsItems };
+export const site = siteData;
+
+export const scholarProfileUrl = heroData.socialLinks.find(link => link.icon === "scholar")?.url;
+export const publicationPreviews = Object.fromEntries(
+  Object.entries(previewItems).map(([id, preview]) => [id, {
+    ...preview,
+    figure: resolveAsset(preview.figure),
+  }]),
+);
 
 export const hero = {
   ...heroData,
@@ -35,6 +49,12 @@ export const hero = {
 };
 
 export const about = aboutData;
+
+export const education = educationData;
+export const awards = awardsData;
+export function isSectionVisible(section) {
+  return section.enabled === true && Array.isArray(section.items) && section.items.length > 0;
+}
 
 export const publications = publicationItems.map((publication) => ({
   ...publication,

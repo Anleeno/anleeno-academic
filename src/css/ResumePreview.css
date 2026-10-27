@@ -1,0 +1,45 @@
+.resume-preview { box-sizing: border-box; width: min(880px, calc(100vw - 48px)); height: 92dvh; max-width: none; max-height: 1200px; padding: 0; margin: auto; overflow: hidden; border: 1px solid #ffffffb3; border-radius: 10px; background: rgb(249 250 253 / 88%); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 24px 80px #1b23402b; color: #303747; font: 13px/1.5 Arial, sans-serif; text-align: left; }
+.resume-preview[open] { display: flex; flex-direction: column; }
+.resume-preview::backdrop { background: #25283740; }
+.resume-preview * { box-sizing: border-box; }
+.resume-preview button, .resume-preview a { font: inherit; color: var(--theme-text-color); }
+.resume-preview button, .resume-actions a { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; padding: 7px; border: 0; border-radius: 5px; background: transparent; cursor: pointer; text-decoration: none; }
+.resume-preview button::before, .resume-preview a::before { content: none; }
+.resume-preview button:hover:not(:disabled), .resume-actions a:hover { background: #58609b0b; }
+.resume-preview button:disabled { opacity: .3; cursor: default; }
+.resume-preview :is(button,a,[tabindex]):focus-visible { outline: 2px solid var(--theme-color-soft); outline-offset: 1px; }
+.resume-preview button:focus:not(:focus-visible) { outline: none; }
+.resume-preview svg { width: 17px; height: 17px; flex-shrink: 0; stroke-width: 1.5; }
+.resume-heading { position: relative; inset: auto; width: 100%; height: auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 10px 16px; min-height: 56px; flex-shrink: 0; border-bottom: 1px solid #58609b12; background: #ffffff65; }
+.resume-heading .resume-accessible-title { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.resume-actions, .resume-window-actions, .resume-pagination, .resume-zoom { display: flex; align-items: center; gap: 4px; }
+.resume-window-actions { justify-self: end; }
+.resume-document-icon { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; color: var(--theme-text-color); }
+.resume-document-icon svg { width: 21px; height: 21px; }
+.resume-preview .resume-fit { margin-left: 4px; }
+.resume-heading :is(button,a) { color: #687086; transition: background .15s ease, color .15s ease; border-radius: 6px; }
+.resume-heading :is(button,a):hover { color: var(--theme-text-color); }
+.resume-zoom { gap: 0; padding: 0 3px; background: #58609b07; border-radius: 6px; }
+.resume-preview .resume-scale { width: 48px; font-size: 12px; font-variant-numeric: tabular-nums; }
+.resume-tools { display: flex; justify-content: center; padding: 3px 12px; border-bottom: 1px solid #58609b0d; }
+.resume-pagination > span { min-width: 56px; text-align: center; font-size: 11px; font-variant-numeric: tabular-nums; }
+.resume-viewport { min-height: 0; flex: 1; overflow: auto; overscroll-behavior: contain; padding: 18px; scrollbar-width: thin; scrollbar-color: #aeb5d570 transparent; }
+.resume-viewport .react-pdf__Document { width: max-content; min-width: 100%; min-height: 100%; }
+.resume-viewport .react-pdf__Page { margin: 0 auto; width: max-content; box-shadow: 0 2px 16px #29334a0d; }
+.resume-viewport .react-pdf__Page canvas { display: block; }
+.resume-message { padding: 40px 12px; text-align: center; color: #626b7b; }
+.resume-message button { width: auto; padding-inline: 12px; }
+.resume-message a { display: block; margin-top: 12px; }
+@media (min-width: 601px) {
+  .resume-preview { width: min(680px, calc(100vw - 64px)); height: 90dvh; max-height: 1180px; border-radius: 12px; background: rgb(247 248 252 / 92%); }
+  .resume-viewport { padding: 14px; background: #e5e8f040; }
+  .resume-viewport .react-pdf__Page { box-shadow: 0 6px 28px #27324b12, 0 0 0 1px #27324b08; }
+}
+@media (max-width: 600px) {
+  .resume-preview { width: calc(100vw - 16px); height: 96dvh; border-radius: 8px; }
+  .resume-heading { padding: 8px 10px; gap: 6px; }
+  .resume-actions, .resume-window-actions { gap: 0; }
+  .resume-preview button, .resume-actions a { width: 32px; height: 34px; }
+  .resume-preview .resume-scale { width: 42px; }
+  .resume-viewport { padding: 8px; }
+}

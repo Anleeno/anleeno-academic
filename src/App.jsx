@@ -5,9 +5,10 @@ import Publications from './components/Publications';
 import Experience from './components/Experience';
 import Footer from './components/Footer';
 import './App.css';
-import "./css/All.css";
+import "./css/Typography.css";
 import News from "./components/News.jsx";
-import More from "./components/More.jsx";
+import Projects from "./components/Projects.jsx";
+import AcademicBackground from "./components/AcademicBackground.jsx";
 
 function App() {
     return (
@@ -23,7 +24,8 @@ function App() {
                         <News />
                         <Publications />
                         <Experience />
-                        <More />
+                        <AcademicBackground />
+                        <Projects />
                     </div>
                 </div>
             </div>

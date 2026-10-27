@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import "../css/Footer.css";
+import { site } from "../siteConfig";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -18,7 +19,7 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="site-footer-content">
-        <p>© {year} Anleeno Xu.</p>
+        <p>© {year} {site.copyrightName}.</p>
         <button
           className={`back-to-top${showBackToTop ? " is-visible" : ""}`}
           type="button"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Quote } from "lucide-react";
-import "../css/All.css";
+import "../css/About.css";
 import { about } from "../siteConfig";
 
 function InfoCallout({ icon, label, children, footer, variant = "default" }) {

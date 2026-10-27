@@ -1,0 +1,15 @@
+{
+  "enabled": false,
+  "items": [
+    {
+      "institution": "Example University · Layout Preview",
+      "degree": "Example Graduate Degree",
+      "period": "20XX – 20XX"
+    },
+    {
+      "institution": "Another Example University · Layout Preview",
+      "degree": "Example Undergraduate Degree",
+      "period": "20XX – 20XX"
+    }
+  ]
+}

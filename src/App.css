@@ -44,7 +44,7 @@ a:hover {
 }
 
 /* ======== Header ======== */
-header{
+header:where(.header-wrapper){
   position: fixed;
   left: 0;
   width: 100%;
@@ -64,7 +64,9 @@ header{
   justify-content: center;
   align-items: center;
   padding: 2rem 0 2rem 8rem;
-  background-color: #fff;
+  /* Let the page provide the background; a transformed opaque panel can
+     expose a compositing seam beneath a translucent modal backdrop. */
+  background-color: transparent;
   height: auto;
   z-index: 5;
 }
@@ -107,7 +109,7 @@ nav a:hover {
     width: 100%;
   }
 
-  header {
+  header:where(.header-wrapper) {
     position: relative;
   }
 

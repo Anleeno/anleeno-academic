@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineCheck, AiOutlineCopy, AiOutlineFileText } from "react-icons/ai";
 import "../css/Publications.css";
 import { publications } from "../siteConfig";
+import PublicationPreview from "./PublicationPreview";
 import { fetchScholarCitations, resolveCitationCount } from "../utils/scholarCitations";
 
 function copyText(text) {
@@ -21,6 +22,7 @@ export default function Publications() {
   const [copiedPaper, setCopiedPaper] = useState("");
   const [bursts, setBursts] = useState([]);
   const [citationMap, setCitationMap] = useState({});
+  const [abstractPaper, setAbstractPaper] = useState(null);
 
   useEffect(() => {
     let active = true;
@@ -30,11 +32,11 @@ export default function Publications() {
     return () => { active = false; };
   }, []);
 
-  const copyCitation = (paper, event) => {
+  const copyCitation = (paper, event, celebrate = true) => {
     copyText(paper.citation).then(() => {
       const burstId = `${paper.id}-${Date.now()}`;
       setCopiedPaper(paper.id);
-      setBursts((current) => [...current, { id: burstId, x: event.clientX, y: event.clientY }]);
+      if (celebrate) setBursts((current) => [...current, { id: burstId, x: event.clientX, y: event.clientY }]);
       window.setTimeout(() => setCopiedPaper((current) => current === paper.id ? "" : current), 1400);
       window.setTimeout(() => setBursts((current) => current.filter((burst) => burst.id !== burstId)), 900);
     }).catch(() => {});
@@ -61,21 +63,24 @@ export default function Publications() {
                 <span className={`venue-tag ${paper.venueType}`}>{paper.venue}</span>
                 {paper.ccf && <span className="venue-tag ccf">{paper.ccf}</span>}
               </div>
-              <div className="publication-title-wrapper">
-                <div className="publication-title" tabIndex="0">{paper.title}</div>
-                <div className="abstract-popup" role="tooltip">{paper.abstract}</div>
-              </div>
+              <h3 className="publication-title">
+                {paper.abstract ? (
+                  <button className="publication-abstract-trigger" type="button" aria-haspopup="dialog" aria-label={`Preview paper: ${paper.title}`} onClick={() => setAbstractPaper(paper)}>
+                    {paper.title}
+                  </button>
+                ) : paper.title}
+              </h3>
               <div className="publication-author-row">
                 <div className="publication-authors">{paper.authors.map((author, index) => author.strong ? <strong key={index}>{author.text}</strong> : <React.Fragment key={index}>{author.text}</React.Fragment>)}</div>
                 <div className="publication-author-tags">
                   {Number.isFinite(citationCount) && citationCount > 0 && <span className="publication-author-tag is-citation">Cited by {citationCount}</span>}
-                  {paper.authorTag && <span className={`publication-author-tag is-${paper.authorTag.type}`}>{paper.authorTag.label}</span>}
+                  {paper.authorTag && <span className={`publication-author-tag is-${paper.authorTag.type}`}>{paper.authorTag.type === "rank" && <span className="challenge-trophy" aria-hidden="true">🏆</span>}{paper.authorTag.label}</span>}
                 </div>
               </div>
               <div className="publication-tags">{paper.tags.map((tag) => <span className="tag-item-show" key={tag}>{tag}</span>)}</div>
               <div className="publication-links">
                 <a href={paper.link} target="_blank" rel="noreferrer"><AiOutlineFileText aria-hidden="true" />Paper</a>
-                <button className={copiedPaper === paper.id ? "is-copied" : ""} type="button" onClick={(event) => copyCitation(paper, event)}>
+                <button className={`publication-cite${copiedPaper === paper.id ? " is-copied" : ""}`} type="button" onClick={(event) => copyCitation(paper, event)}>
                   {copiedPaper === paper.id ? <AiOutlineCheck aria-hidden="true" /> : <AiOutlineCopy aria-hidden="true" />}
                   {copiedPaper === paper.id ? "Copied" : "Cite"}
                 </button>
@@ -86,6 +91,7 @@ export default function Publications() {
           );
         })}
       </div>
+      {abstractPaper && <PublicationPreview paper={abstractPaper} papers={publications} onChange={setAbstractPaper} onClose={() => setAbstractPaper(null)} onCopy={copyCitation} copied={copiedPaper} />}
     </section>
   );
 }

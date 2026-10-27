@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { BookOpen, BriefcaseBusiness, FolderKanban, Newspaper, UserRound } from "lucide-react";
+import { Award, GraduationCap, BookOpen, BriefcaseBusiness, FolderKanban, Newspaper, UserRound } from "lucide-react";
 import "../css/Header.css";
-import { hero } from "../siteConfig";
+import { hero, education, awards, isSectionVisible } from "../siteConfig";
 
 const NAV = [
   { id: "about", label: "About", icon: UserRound },
   { id: "news", label: "News", icon: Newspaper },
   { id: "publications", label: "Publications", icon: BookOpen },
   { id: "experience", label: "Experience", icon: BriefcaseBusiness },
+  ...(isSectionVisible(education) ? [{ id: "education", label: "Education", icon: GraduationCap }] : []),
+  ...(isSectionVisible(awards) ? [{ id: "awards", label: "Awards", icon: Award }] : []),
   { id: "projects", label: "Projects", icon: FolderKanban },
 ];
 

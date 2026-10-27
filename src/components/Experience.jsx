@@ -6,6 +6,54 @@ export default function Experience() {
   const timelineRef = useRef(null);
 
   useEffect(() => {
+    const timeline = timelineRef.current;
+    if (!timeline) return;
+    const items = Array.from(timeline.querySelectorAll(".timeline-item"));
+    let frame = null;
+
+    const updateProgress = () => {
+      frame = null;
+      const bounds = timeline.getBoundingClientRect();
+      const readingPosition = window.innerHeight * 0.5;
+      const trackHeight = Math.max(1, items.at(-1).getBoundingClientRect().bottom - bounds.top);
+      // Keep the fill tip at the viewport midpoint while the track crosses it.
+      const progress = Math.min(1, Math.max(0, (readingPosition - bounds.top) / trackHeight));
+      const filledPosition = bounds.top + trackHeight * progress;
+      timeline.style.setProperty("--timeline-track-height", `${trackHeight}px`);
+      timeline.style.setProperty("--timeline-progress", progress);
+      let currentIndex = -1;
+      items.forEach((item, index) => {
+        const year = item.querySelector(".timeline-year").getBoundingClientRect();
+        const passed = year.top + year.height / 2 <= filledPosition;
+        item.classList.toggle("is-passed", passed);
+        if (passed) currentIndex = index;
+      });
+      items.forEach((item, index) => item.classList.toggle("is-current", index === currentIndex && bounds.bottom > 0));
+    };
+    if (!items.length) return;
+    const scheduleUpdate = () => {
+      if (frame === null) frame = window.requestAnimationFrame(updateProgress);
+    };
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    const resizeObserver = new ResizeObserver(scheduleUpdate);
+    resizeObserver.observe(timeline);
+    scheduleUpdate();
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      resizeObserver.disconnect();
+      if (frame !== null) window.cancelAnimationFrame(frame);
+      timeline.style.removeProperty("--timeline-progress");
+      timeline.style.removeProperty("--timeline-track-height");
+      items.forEach((item) => {
+        item.classList.remove("is-passed", "is-current");
+      });
+    };
+  }, []);
+
+  useEffect(() => {
     const cleanups = [];
     const cards = timelineRef.current?.querySelectorAll(".timeline-content") ?? [];
 
