@@ -1,3 +1,4 @@
+import { paperAssetTtl, writePaperAsset } from './paperAssetCache.js';
 const entries = new Map();
 const budget = 24 * 1024 * 1024;
 let size = 0;
@@ -9,6 +10,7 @@ export function cachedPdfBytes(url) {
 }
 
 export function cachePdfBytes(url, bytes) {
+  void writePaperAsset(`pdf-full:${url}`, bytes.slice(), bytes.byteLength, Date.now() + paperAssetTtl);
   if (bytes.byteLength > budget) return;
   if (entries.has(url)) { size -= entries.get(url).byteLength; entries.delete(url); }
   while (size + bytes.byteLength > budget) {

@@ -9,6 +9,13 @@
     "action": "app"
   },
   {
+    "title": "Visual-Grounded Multimodal Search",
+    "image": "assets/projects/mmsearch.png",
+    "meta": "AI SEARCH",
+    "text": "An intent-aware multimodal search system powered by a Router–Planner–Generator architecture. It combines object grounding, region-level retrieval, and external knowledge to connect visual scenes with user intent and generate contextual, evidence-grounded responses.",
+    "action": "github"
+  },
+  {
     "title": "ADAS for Micro-Mobility",
     "image": "assets/projects/ADAS.png",
     "meta": "Intelligent Transportation",

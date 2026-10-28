@@ -1,3 +1,4 @@
+import { readPaperAsset, writePaperAsset } from './paperAssetCache';
 import { pdfjs } from 'react-pdf';
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { findFigureRegions } from './pdfFigureLayout';
@@ -13,7 +14,14 @@ const schedule = createTaskPool(2);
 export function loadPdfFigure(id) {
   if (!/^\d{4}\.\d{4,5}(?:v\d+)?$/.test(id)) return Promise.resolve(null);
   if (jobs.has(id)) return jobs.get(id);
-  const job = schedule(() => extract(id)).catch(error => {
+  const job = (async () => {
+    const key = `figure-v1:${id}`;
+    const cached = await readPaperAsset(key);
+    if (cached) return cached;
+    const result = await schedule(() => extract(id));
+    if (result) await writePaperAsset(key, result, result.url.length * 2);
+    return result;
+  })().catch(error => {
     if (import.meta.env.DEV) console.warn('PDF figure extraction unavailable:', id, error.message);
     return null;
   });

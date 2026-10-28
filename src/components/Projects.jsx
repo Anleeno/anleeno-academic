@@ -18,6 +18,7 @@ const metaIcons = {
   XR: BsStars,
   "Intelligent Transportation": ScanEye,
   "Object Recommendation": TbPhotoSearch,
+  "AI SEARCH": TbPhotoSearch,
 };
 
 function ProjectMedia({ project }) {
@@ -89,7 +90,9 @@ export default function Projects() {
               <h3>{project.title}</h3>
               <p>{project.text}</p>
               {project.note && <div className="project-note">{project.note}</div>}
-              <ProjectAction project={project} />
+              <div className="project-actions">
+                <ProjectAction project={project} />
+              </div>
             </div>
           </article>
         ))}

@@ -42,34 +42,34 @@ npm run dev
 
 Other commands:
 
-| Command | Purpose |
-| --- | --- |
-| `npm run build` | Build the website for publishing |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Check source code style and common errors |
-| `npm run validate:config` | Check configuration files |
-| `npm test` | Run automated tests |
+| Command                     | Purpose                                   |
+| --------------------------- | ----------------------------------------- |
+| `npm run build`           | Build the website for publishing          |
+| `npm run preview`         | Preview the production build locally      |
+| `npm run lint`            | Check source code style and common errors |
+| `npm run validate:config` | Check configuration files                 |
+| `npm test`                | Run automated tests                       |
 
 ## Customize
 
 Most site content can be updated through beginner-friendly JSON files. See
 [`config/README.md`](config/README.md) for a short editing guide.
 
-| Content | File |
-| --- | --- |
-| Site title, description, language, and footer name | `config/site.json` |
-| Profile and social links | `config/hero.json` |
-| Biography | `config/about.json` |
-| News | `config/news.json` |
-| Publications | `config/publications.json` |
-| Custom paper previews (optional) | `config/publication-previews.json` |
-| Related Papers and Daily Papers (optional) | `config/paper-recommendations.json` |
-| Experience | `config/experience.json` |
-| Education (optional) | `config/education.json` |
-| Selected Awards (optional) | `config/awards.json` |
-| Projects | `config/projects.json` |
-| Theme colors | `config/theme.jsonc` |
-| Images, résumé, logos, and video | `src/assets/` |
+| Content                                            | File                                  |
+| -------------------------------------------------- | ------------------------------------- |
+| Site title, description, language, and footer name | `config/site.json`                  |
+| Profile and social links                           | `config/hero.json`                  |
+| Biography                                          | `config/about.json`                 |
+| News                                               | `config/news.json`                  |
+| Publications                                       | `config/publications.json`          |
+| Custom paper previews (optional)                   | `config/publication-previews.json`  |
+| Related Papers and Daily Papers (optional)         | `config/paper-recommendations.json` |
+| Experience                                         | `config/experience.json`            |
+| Education (optional)                               | `config/education.json`             |
+| Selected Awards (optional)                         | `config/awards.json`                |
+| Projects                                           | `config/projects.json`              |
+| Theme colors                                       | `config/theme.jsonc`                |
+| Images, résumé, logos, and video                 | `src/assets/`                       |
 
 Education and Selected Awards are configurable and hidden by default. Replace the
 sample entries in their JSON files, then set `"enabled": true` to show either

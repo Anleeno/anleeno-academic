@@ -58,3 +58,20 @@ test('a transient range failure retries the same bytes without restarting the do
   assert.equal(source.result.bytes.length, 100);
   assert.equal(errors.length, 0);
 });
+test('reopening a paper reuses persisted metadata and downloaded ranges without network', async () => {
+  const entries = new Map();
+  const options = {
+    signal: new AbortController().signal,
+    readCache: async key => entries.get(key),
+    writeCache: async (key, value) => { entries.set(key, structuredClone(value)); },
+    fetchImpl: async (_, request) => request.method === 'HEAD'
+      ? new Response(null, { headers: { 'Content-Length': '1000000' } })
+      : new Response(new Uint8Array(65536), { status: 206 }),
+  };
+  await pdfRangeSource('https://arxiv.org/pdf/cached', Transport, options);
+  const source = await pdfRangeSource('https://arxiv.org/pdf/cached', Transport, {
+    ...options, fetchImpl: async () => { assert.fail('cached range should not use network'); },
+  });
+  assert.equal(source.length, 1000000);
+  assert.equal(source.initial.length, 65536);
+});
