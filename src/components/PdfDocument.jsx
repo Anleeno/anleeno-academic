@@ -5,6 +5,7 @@ import workerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import PdfAnnotations from "./PdfAnnotations";
+import { readPaperAsset } from "../utils/paperAssetCache";
 import { pdfRangeSource } from "../utils/pdfRangeSource";
 
 pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
@@ -19,17 +20,22 @@ export default function PdfDocument({ url, source = url, pages, page, width, rat
   const handlers = useRef({ onError, onProgress });
   useEffect(() => { handlers.current = { onError, onProgress }; }, [onError, onProgress]);
   useEffect(() => {
-    if (typeof file !== 'string' || !/^https:\/\/(?:export\.)?arxiv\.org\/pdf\//.test(file)) return;
+    if (typeof file !== 'string') return;
     const controller = new AbortController();
-    pdfRangeSource(file, pdfjs.PDFDataRangeTransport, {
+    (async () => {
+      const cached = await readPaperAsset(`pdf-full:${url}`);
+      if (cached instanceof Uint8Array) return { data: cached };
+      if (!/^https:\/\/(?:export\.)?arxiv\.org\/pdf\//.test(file)) return file;
+      return pdfRangeSource(file, pdfjs.PDFDataRangeTransport, {
       signal: controller.signal,
       onError: error => handlers.current.onError(error),
       onProgress: progress => handlers.current.onProgress(progress),
-    }).then(value => { if (!controller.signal.aborted) setPrepared({ file, value }); })
+    });
+    })().then(value => { if (!controller.signal.aborted) setPrepared({ file, value }); })
       .catch(error => { if (!controller.signal.aborted) handlers.current.onError(error); });
     return () => controller.abort();
-  }, [file]);
-  const needsRange = typeof file === 'string' && /^https:\/\/(?:export\.)?arxiv\.org\/pdf\//.test(file);
+  }, [file, url]);
+  const needsRange = typeof file === 'string';
   const resolved = needsRange ? (prepared?.file === file ? prepared.value : null) : file;
   const cachedDocument = useRef(null);
   function loaded(pdf) {
