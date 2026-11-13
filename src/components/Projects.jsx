@@ -7,6 +7,7 @@ import { SiHuggingface } from "react-icons/si";
 import { TbPhotoSearch } from "react-icons/tb";
 import { projects } from "../siteConfig";
 import DailyPapers from "./DailyPapers";
+import useNearViewport from "../hooks/useNearViewport";
 
 const actionDetails = {
   app: { label: "App", Icon: Smartphone },
@@ -27,7 +28,6 @@ function ProjectMedia({ project }) {
 
   const playVideo = () => {
     if (!videoRef.current) return;
-    setIsPlaying(true);
     videoRef.current.play().catch(() => setIsPlaying(false));
   };
 
@@ -43,13 +43,25 @@ function ProjectMedia({ project }) {
       <div className={`project-video-shell ${isPlaying ? "is-playing" : ""}`}
         onMouseEnter={playVideo} onMouseLeave={resetVideo} onFocus={playVideo} onBlur={resetVideo}>
         <video ref={videoRef} className="project-media" src={project.video} muted loop playsInline
-          preload="metadata" aria-label={`${project.title} preview`} />
-        <img className="project-video-poster" src={project.image} alt={`${project.title} preview`} />
+          preload="none" onPlaying={() => setIsPlaying(true)} aria-label={`${project.title} preview`} />
+        <img className="project-video-poster" src={project.image} alt={`${project.title} preview`} loading="lazy" decoding="async" />
       </div>
     );
   }
 
-  return <img className="project-media" src={project.image} alt={`${project.title} preview`} />;
+  return <img className="project-media" src={project.image} alt={`${project.title} preview`} loading="lazy" decoding="async" />;
+}
+
+function ProjectMediaFrame({ project }) {
+  const [ref, visible] = useNearViewport();
+  return (
+    <div className="project-media-frame" ref={ref}>
+      {visible && <>
+        <img className="project-media-backdrop" src={project.image} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <ProjectMedia project={project} />
+      </>}
+    </div>
+  );
 }
 
 function ProjectAction({ project }) {
@@ -81,10 +93,7 @@ export default function Projects() {
       <div className="project-grid">
         {projects.map((project) => (
           <article className="project-card" key={project.title}>
-            <div className="project-media-frame">
-              <img className="project-media-backdrop" src={project.image} alt="" aria-hidden="true" />
-              <ProjectMedia project={project} />
-            </div>
+            <ProjectMediaFrame project={project} />
             <div className="project-body">
               <ProjectMeta meta={project.meta} />
               <h3>{project.title}</h3>

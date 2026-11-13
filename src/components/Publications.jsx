@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { AiOutlineCheck, AiOutlineCopy, AiOutlineFileText } from "react-icons/ai";
 import "../css/Publications.css";
 import { publications } from "../siteConfig";
-import PublicationPreview from "./PublicationPreview";
 import { fetchScholarCitations, resolveCitationCount } from "../utils/scholarCitations";
+
+const loadPublicationPreview = () => import("./PublicationPreview");
+const PublicationPreview = lazy(loadPublicationPreview);
 
 function copyText(text) {
   if (navigator.clipboard?.writeText) return navigator.clipboard.writeText(text);
@@ -57,7 +59,7 @@ export default function Publications() {
           const citationCount = resolveCitationCount(paper.title, citationMap);
           return (
           <article className="publication-card" id={paper.id} key={paper.id}>
-            <img className="publication-image" src={paper.image} alt="" />
+            <img className="publication-image" src={paper.image} alt="" loading="lazy" decoding="async" />
             <div className="publication-content">
               <div className="publication-venue">
                 <span className={`venue-tag ${paper.venueType}`}>{paper.venue}</span>
@@ -65,7 +67,10 @@ export default function Publications() {
               </div>
               <h3 className="publication-title">
                 {paper.abstract ? (
-                  <button className="publication-abstract-trigger" type="button" aria-haspopup="dialog" aria-label={`Preview paper: ${paper.title}`} onClick={() => setAbstractPaper(paper)}>
+                  <button className="publication-abstract-trigger" type="button" aria-haspopup="dialog" aria-label={`Preview paper: ${paper.title}`}
+                    onPointerEnter={() => { void loadPublicationPreview(); }}
+                    onFocus={() => { void loadPublicationPreview(); }}
+                    onClick={() => setAbstractPaper(paper)}>
                     {paper.title}
                   </button>
                 ) : paper.title}
@@ -91,7 +96,7 @@ export default function Publications() {
           );
         })}
       </div>
-      {abstractPaper && <PublicationPreview paper={abstractPaper} papers={publications} onChange={setAbstractPaper} onClose={() => setAbstractPaper(null)} onCopy={copyCitation} copied={copiedPaper} />}
+      {abstractPaper && <Suspense fallback={null}><PublicationPreview paper={abstractPaper} papers={publications} onChange={setAbstractPaper} onClose={() => setAbstractPaper(null)} onCopy={copyCitation} copied={copiedPaper} /></Suspense>}
     </section>
   );
 }

@@ -23,7 +23,7 @@ export function createArxivService(config, { fetchImpl = fetch, now = Date.now, 
     const url = buildQuery(config, id, expanded);
     if (!url) return new Response("Unknown paper", { status: 404 });
     const key = url.toString();
-    const ttl = config.cacheMinutes * 60;
+    const ttl = (id === "daily" ? (config.daily?.cacheMinutes ?? config.cacheMinutes) : config.cacheMinutes) * 60;
     const cached = memory.get(key);
     if (cached && now() - cached.time < ttl * 1000) return cached.response.clone();
     if (pending.has(key)) return (await pending.get(key)).clone();

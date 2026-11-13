@@ -1,14 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import { cachedFigure, loadFigure, invalidateFigure } from '../utils/paperFigureCache';
+import useNearViewport from '../hooks/useNearViewport';
 
 export default function PaperFigure({ paper, endpoint }) {
   const id = paper.figureId || paper.id;
+  const [container, visible] = useNearViewport('300px');
   const [figure, setFigure] = useState(() => cachedFigure(id)?.figure);
   const [loaded, setLoaded] = useState(new Set());
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [pending, setPending] = useState(true);
   useEffect(() => {
+    if (!visible) return;
     let active = true;
     setPending(true);
     setFailed(false);
@@ -20,9 +23,9 @@ export default function PaperFigure({ paper, endpoint }) {
     }
     load().catch(() => { if (active) setPending(false); });
     return () => { active = false; };
-  }, [id, endpoint, attempt]);
+  }, [visible, id, endpoint, attempt]);
   useEffect(() => {
-    if (!failed) return;
+    if (!visible || !failed) return;
     let active = true;
     setPending(true);
     import('../utils/pdfFigure').then(module => module.loadPdfFigure(id)).then(next => {
@@ -31,21 +34,21 @@ export default function PaperFigure({ paper, endpoint }) {
       else setPending(false);
     }).catch(() => { if (active) setPending(false); });
     return () => { active = false; };
-  }, [failed, id, figure?.url]);
+  }, [visible, failed, id, figure?.url]);
   useEffect(() => {
-    if (pending || (figure && !failed) || attempt >= 2) return;
+    if (!visible || pending || (figure && !failed) || attempt >= 2) return;
     const timer = setTimeout(() => { invalidateFigure(id); setAttempt(value => value + 1); }, (attempt + 1) * 8000);
     return () => clearTimeout(timer);
-  }, [pending, figure, failed, attempt, id]);
+  }, [visible, pending, figure, failed, attempt, id]);
   const images = useMemo(() => figure?.panels || (figure ? [figure.url] : []), [figure]);
   const ready = images.some(url => loaded.has(url));
   useEffect(() => {
-    if (!figure || images.every(url => loaded.has(url)) || failed) return;
+    if (!visible || !figure || images.every(url => loaded.has(url)) || failed) return;
     const timer = setTimeout(() => setFailed(true), 15000);
     return () => clearTimeout(timer);
-  }, [figure, loaded, failed, images]);
-  return <span className="related-cover" aria-hidden="true">
+  }, [visible, figure, loaded, failed, images]);
+  return <span ref={container} className="related-cover" aria-hidden="true">
     {!ready && <span className={`related-figure-placeholder${pending ? ' is-loading' : ''}`} />}
-    {figure && (!failed || ready) && <span style={{ opacity: ready ? 1 : 0 }} className={`related-figure-panels${images.length > 1 ? ' is-composite' : ''}`}>{images.map(url => <img key={`${url}:${attempt}`} className="related-figure" src={url} style={{ display: failed && !loaded.has(url) ? 'none' : undefined }} alt="" referrerPolicy="no-referrer" onLoad={() => setLoaded(previous => new Set([...previous, url]))} onError={() => setFailed(true)} />)}</span>}
+    {visible && figure && (!failed || ready) && <span style={{ opacity: ready ? 1 : 0 }} className={`related-figure-panels${images.length > 1 ? ' is-composite' : ''}`}>{images.map(url => <img key={`${url}:${attempt}`} className="related-figure" src={url} style={{ display: failed && !loaded.has(url) ? 'none' : undefined }} alt="" decoding="async" referrerPolicy="no-referrer" onLoad={() => setLoaded(previous => new Set([...previous, url]))} onError={() => setFailed(true)} />)}</span>}
   </span>;
 }

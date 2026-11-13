@@ -19,6 +19,7 @@ export default function RelatedPapers({ paper, onOpen, daily = false }) {
   const [loading, setLoading] = useState(true);
   const shown = useRef([]);
   const endpoint = config.endpoint;
+  const cacheMinutes = daily ? (config.daily?.cacheMinutes ?? config.cacheMinutes) : config.cacheMinutes;
   const keywords = daily ? config.daily?.keywords : paper.tags;
   const paperKeywords = paper.tags || [];
   const limit = daily ? (expanded ? 8 : config.daily?.limit) : config.limit;
@@ -59,10 +60,10 @@ export default function RelatedPapers({ paper, onOpen, daily = false }) {
           if (!data) {
             try {
               const saved = JSON.parse(sessionStorage.getItem(key) || 'null');
-              if (saved && Array.isArray(saved.items) && Date.now() - saved.time < config.cacheMinutes * 60000) data = saved;
+              if (saved && Array.isArray(saved.items) && Date.now() - saved.time < cacheMinutes * 60000) data = saved;
             } catch { /* Browser storage is optional. */ }
           }
-          if (!data || Date.now() - data.time >= config.cacheMinutes * 60000) {
+          if (!data || Date.now() - data.time >= cacheMinutes * 60000) {
             data = await fetchHuggingFacePapers(JSON.parse(keywordKey), { signal: controller.signal, excluded: [paper.link, paper.pdfUrl] });
             feeds.set(key, data);
             try { sessionStorage.setItem(key, JSON.stringify(data)); } catch { /* Storage is optional. */ }
@@ -75,14 +76,14 @@ export default function RelatedPapers({ paper, onOpen, daily = false }) {
         if (!data) {
           try {
             const saved = JSON.parse(sessionStorage.getItem(`arxiv-feed:${key}`) || 'null');
-            if (saved && Date.now() - saved.time < config.cacheMinutes * 60000 && typeof saved.xml === 'string' && saved.xml.length < 1000000) {
+            if (saved && Date.now() - saved.time < cacheMinutes * 60000 && typeof saved.xml === 'string' && saved.xml.length < 1000000) {
               parseArxivFeed(saved.xml, [], limit);
               data = saved;
               feeds.set(key, data);
             }
           } catch { /* Invalid or unavailable cache: request fresh data. */ }
         }
-        if (!data || Date.now() - data.time > config.cacheMinutes * 60000) {
+        if (!data || Date.now() - data.time > cacheMinutes * 60000) {
           const url = new URL(endpoint, window.location.origin);
           url.searchParams.set("paper", paper.id);
           if (daily && expanded) url.searchParams.set("expanded", "1");
@@ -101,7 +102,7 @@ export default function RelatedPapers({ paper, onOpen, daily = false }) {
     }
     load();
     return () => { active = false; clearTimeout(timer); controller.abort(); };
-  }, [enabled, visible, endpoint, paper.id, paper.link, paper.pdfUrl, retry, limit, keywordKey, daily, expanded]);
+  }, [enabled, visible, endpoint, cacheMinutes, paper.id, paper.link, paper.pdfUrl, retry, limit, keywordKey, daily, expanded]);
   if (!enabled) return null;
   return <section id={daily ? "daily-papers" : undefined} ref={section} className={`related-papers${daily ? " daily-papers" : ""}`} aria-label={`${daily ? "Daily" : "Related"} papers from ${endpoint ? "arXiv" : "Hugging Face"}`}>
     <div className="related-heading">{daily ? <h2 className="card-title">Daily Papers</h2> : <h3>RELATED PAPERS</h3>}</div>

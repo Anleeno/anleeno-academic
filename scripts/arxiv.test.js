@@ -27,6 +27,29 @@ test("daily feed uses independent keywords, limit and visibility", () => {
   assert.equal(buildQuery(config, "daily"), null);
   assert.equal(buildQuery({ ...config, daily: { ...daily, enabled: false } }, "daily"), null);
 });
+test("daily cache lasts six hours independently of the related paper cache", async () => {
+  const settings = { ...config, daily: { enabled: true, limit: 4, keywords: ["AIGC"], cacheMinutes: 360 } };
+  let time = 0, calls = 0;
+  const service = createArxivService(settings, {
+    spacing: 0,
+    now: () => time,
+    fetchImpl: async () => { calls++; return new Response("<feed></feed>"); },
+  });
+  assert.equal((await service("daily")).headers.get("Cache-Control"), "public, max-age=21600");
+  assert.equal((await service("demo")).headers.get("Cache-Control"), "public, max-age=1800");
+  assert.equal(calls, 2);
+  time = 30 * 60000;
+  await service("daily");
+  assert.equal(calls, 2);
+  await service("demo");
+  assert.equal(calls, 3);
+  time = 360 * 60000 - 1;
+  await service("daily");
+  assert.equal(calls, 3);
+  time++;
+  await service("daily");
+  assert.equal(calls, 4);
+});
 test("arXiv query is allowlisted, phrase-based and newest-first", () => {
   assert.equal(buildQuery(config, "https://evil.example"), null);
   assert.equal(buildQuery(config, "toString"), null);

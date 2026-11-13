@@ -28,7 +28,7 @@ export default function Hero() {
   const [preview, setPreview] = useState(null);
   return (
     <div className="hero-grid"><div className="hero-left">
-      <img src={hero.profileImage} alt={hero.name} className="profile-pic" draggable={false} />
+      <img src={hero.profileImage} alt={hero.name} className="profile-pic" draggable={false} fetchPriority="high" />
       <div className="hero-meta">
         <div className="meta-name">{hero.name}</div><div>{hero.title}</div>
         <div className="meta-description">

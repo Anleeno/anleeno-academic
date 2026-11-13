@@ -1,9 +1,9 @@
-import { useState } from "react";
-import PdfPreview from "./PdfPreview";
+import { lazy, Suspense, useState } from "react";
 import RelatedPapers from "./RelatedPapers";
 import "../css/DailyPapers.css";
 
 const dailyFeed = { id: "daily" };
+const PdfPreview = lazy(() => import("./PdfPreview"));
 
 export default function DailyPapers() {
   const [paper, setPaper] = useState(null);
@@ -15,6 +15,6 @@ export default function DailyPapers() {
       </filter></defs>
     </svg>
     <RelatedPapers paper={dailyFeed} daily onOpen={setPaper} />
-    {paper && <PdfPreview key={paper.id} url={paper.pdfUrl} name={paper.title} kind="paper" standalone onClose={() => setPaper(null)} />}
+    {paper && <Suspense fallback={null}><PdfPreview key={paper.id} url={paper.pdfUrl} name={paper.title} kind="paper" standalone onClose={() => setPaper(null)} /></Suspense>}
   </>;
 }

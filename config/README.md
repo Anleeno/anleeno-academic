@@ -161,6 +161,7 @@ Edit `paper-recommendations.json`:
 - `cacheMinutes`: how long to reuse fetched results (15–1440 minutes).
 - `daily.enabled`: show or hide Daily Papers on the homepage.
 - `daily.limit`: initial Daily Papers count (1–6); More shows up to eight available papers.
+- `daily.cacheMinutes`: optional Daily Papers cache duration (15–1440 minutes); defaults to `cacheMinutes`. The current value is 360 minutes (six hours).
 - `daily.keywords`: up to five search phrases, such as `"Multimodal"` and `"AI Agents"`.
 
 The navigation includes Trends for Daily Papers when enabled and hides its link when disabled,
